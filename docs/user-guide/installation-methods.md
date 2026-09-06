@@ -4,13 +4,30 @@
 
 This guide describes different ways to install DocGen.
 
-## Method 1: PyPI (Recommended)
+## Method 1: Private GitLab PyPI registry
 
-The easiest way to install DocGen:
+Doc-Gen is not published to the public PyPI index. Authorized users can install
+the immutable release package from its private GitLab project registry with a
+deploy token that has `read_package_registry` permission:
 
 ```bash
-pip install doc-gen
+python -m pip install \
+  --index-url "https://<deploy-token-user>:<deploy-token>@gitlab.com/api/v4/projects/<project-id>/packages/pypi/simple" \
+  "doc-gen==1.0.0"
 ```
+
+A release-candidate tag such as `v1.0.0-rc.1` is stored as the canonical
+PEP 440 version `1.0.0rc1`:
+
+```bash
+python -m pip install \
+  --index-url "https://<deploy-token-user>:<deploy-token>@gitlab.com/api/v4/projects/<project-id>/packages/pypi/simple" \
+  "doc-gen==1.0.0rc1"
+```
+
+Do not commit tokens. Disable GitLab package forwarding when resolution must
+remain strictly private, and avoid `--extra-index-url` for private package
+names.
 
 Verify installation:
 
@@ -66,12 +83,12 @@ pip install -e .[dev]
 
 ## Choosing a Method
 
-| Method      | Best For                    |
-| ----------- | --------------------------- |
-| PyPI        | Most users                  |
-| GitHub      | Latest development version  |
-| Docker      | Isolated environment        |
-| Development | Contributing to the project |
+| Method              | Best For                    |
+| ------------------- | --------------------------- |
+| Private GitLab PyPI | Authorized deployments      |
+| GitHub              | Latest development version  |
+| Docker              | Isolated environment        |
+| Development         | Contributing to the project |
 
 ## Verification
 

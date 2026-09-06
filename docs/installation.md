@@ -20,19 +20,29 @@ git --version
 
 ---
 
-## Install from PyPI
+## Install from the Private GitLab PyPI Registry
 
-Install the latest version from PyPI:
-
-```bash
-pip install doc-gen
-```
-
-Install a specific version:
+Doc-Gen is not published to the public PyPI index. Use a GitLab deploy token
+with `read_package_registry` access and replace the placeholders below:
 
 ```bash
-pip install doc-gen==1.0.0
+python -m pip install \
+  --index-url "https://<deploy-token-user>:<deploy-token>@gitlab.com/api/v4/projects/<project-id>/packages/pypi/simple" \
+  "doc-gen==1.0.0"
 ```
+
+Release-candidate tags are normalized to PEP 440. For example,
+`v1.0.0-rc.1` is installed as:
+
+```bash
+python -m pip install \
+  --index-url "https://<deploy-token-user>:<deploy-token>@gitlab.com/api/v4/projects/<project-id>/packages/pypi/simple" \
+  "doc-gen==1.0.0rc1"
+```
+
+Keep credentials out of committed files and shell history. Disable GitLab
+package forwarding for strictly private resolution, and avoid
+`--extra-index-url` for private packages.
 
 ---
 

@@ -14,23 +14,8 @@ Unreleased
 
 **Summary**
 
-Checkpoint the Doc Gen 1.0 redesign foundation, consolidating the major
-CLI, configuration, project-analysis, Markdown-generation, architecture,
-safety, testing, tooling, container, CI/CD, and documentation changes developed
-after v0.1.0.
-
-This untagged checkpoint prepares the rename of the v0.1.0
-`print_project_structure` project to Doc Gen for v1.0.0-rc.1 and transforms its
-former four-file project-structure utility into a packaged and
-configuration-driven documentation CLI. The new foundation supports
-focused generation, printing, and analysis workflows for users while giving
-contributors separated scanner, renderer, writer, configuration, CLI,
-initialization, UI, and utility components that are easier to understand, test,
-debug, maintain, and extend.
-
-### 📦 Others
-
-- Update version from v1.0.0 to v0.1.0
+Add the private GitLab PyPI distribution path for Doc Gen and harden the
+release boundary before the v1.0.0-rc.1 promotion commit.
 
 ### ✨ Features
 
@@ -186,9 +171,50 @@ debug, maintain, and extend.
 - Target and output paths are resolved from CLI/configuration instead of being hardcoded in the script.
 - Internal scanner, generator, configuration, and utility imports have changed completely.
 
+### 📦 Others
+
+- Update version from v1.0.0 to v0.1.0
+
+### Private Package Delivery
+
+#### Distribution
+
+- Publish the `doc-gen` wheel and source distribution to the project-level
+- Keep `doc-gen` as both the Python distribution and installed console-command
+- Convert reviewed SemVer release tags to canonical PEP 440 package versions,
+- Use GitLab's short-lived `CI_JOB_TOKEN` for publication and document deploy
+- Keep published versions immutable: duplicate uploads fail instead of
+
+### Validation And Release Safeguards
+
+#### Distribution
+
+- Validate every pushed tag without granting every tag publication authority.
+- Let unprotected tags complete package validation successfully while skipping
+- Require a protected, non-empty annotated release tag before any external
+- Reject unsupported or ambiguous versions, lightweight tags, empty tag
+- Build exactly one wheel and one source distribution, run `twine check`,
+
+### Pipeline And Documentation Alignment
+
+#### Distribution
+
+- Order the GitLab release path as test → package validation → production
+- Keep retained package artifacts available for inspecting validation-only tag
+- Update CI/CD guidance with the protected-tag contract, deploy-token install
+- Add structural regression coverage for validation-only unprotected tags and
+
+### Validation
+
+#### Distribution
+
+- Passed the full Doc Gen suite: 78 tests.
+- Passed focused GitLab workflow structural checks: 8 tests.
+- Passed Ruff, Black, GitLab YAML parsing, and repository diff checks.
+
 **Tags**
 
-feature • bugfix • docs • breaking-change • tests • ci • doc-gen
+feature • bugfix • docs • breaking-change • tests • ci • distribution
 
 ## v0.1.0 (2026-03-23)
 

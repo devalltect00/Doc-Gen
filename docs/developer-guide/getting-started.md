@@ -13,10 +13,20 @@ cd doc-gen
 
 ## 2) Create Environment and Install Dependencies
 
+Use Python 3.14 for the standard development environment and quality tools:
+
 ```bash
 python -m venv .venv
 .venv\Scripts\activate
-pip install -e .[dev]
+pip install -e ".[dev]"
+```
+
+For a compatibility-test environment such as Python 3.9, install only the
+runtime-compatible test dependencies:
+
+```bash
+pip install -e ".[test]"
+make test-ci
 ```
 
 ## 3) Validate Local Setup
@@ -36,9 +46,7 @@ doc-gen structure generate
 ## 5) Run Tests and Lint Checks
 
 ```bash
-pytest -v
-ruff check app tests
-ruff format app tests
+make check-ci
 ```
 
 ## 6) Main Code Map

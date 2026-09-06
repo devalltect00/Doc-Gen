@@ -8,10 +8,13 @@ This guide describes the typical lifecycle of using DocGen.
 
 ### 1. Install
 
-First, install DocGen:
+First, install Doc-Gen from the private GitLab PyPI registry with a deploy
+token that has `read_package_registry` access:
 
 ```bash
-pip install doc-gen
+python -m pip install \
+  --index-url "https://<deploy-token-user>:<deploy-token>@gitlab.com/api/v4/projects/<project-id>/packages/pypi/simple" \
+  "doc-gen==1.0.0"
 ```
 
 ### 2. Generate
@@ -99,7 +102,7 @@ Automate in CI/CD:
 # .gitlab-ci.yml or similar
 generate-docs:
   script:
-    - pip install doc-gen
+    - python -m pip install --index-url "https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/pypi/simple" "doc-gen==1.0.0"
     - doc-gen structure generate
     - git add PROJECT_STRUCTURE.md
     - git commit -m "Update project structure" || true

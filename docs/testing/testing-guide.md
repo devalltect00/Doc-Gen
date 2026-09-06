@@ -110,10 +110,21 @@ open htmlcov/index.html
 
 ## CI Testing
 
-Tests run automatically in CI. See Makefile:
+Compatibility tests run on Python 3.9 and Python 3.14 with the `test` extra,
+which explicitly includes PyYAML for workflow-configuration tests.
+Black and Ruff run separately on Python 3.14 with the `dev` extra so developer
+tool requirements cannot break the supported Python 3.9 runtime.
+
+Equivalent local commands are:
 
 ```bash
+pip install -e ".[test]"
 make test-ci
+
+# Standard Python 3.14 development environment
+pip install -e ".[dev]"
+make format-check-ci
+make lint-ci
 make c-ci
 ```
 

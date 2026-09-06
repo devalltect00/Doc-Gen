@@ -42,9 +42,16 @@ It helps developers quickly understand project layout.
 ## 🚀 Quick Start
 
 ```bash
-pip install doc-gen
-doc-gen generate
+python -m pip install \
+  --index-url "https://<deploy-token-user>:<deploy-token>@gitlab.com/api/v4/projects/<project-id>/packages/pypi/simple" \
+  "doc-gen==1.0.0"
+doc-gen structure generate
 ```
+
+The package registry is private. Use a GitLab deploy token with
+`read_package_registry` access, and see
+[`docs/user-guide/installation-methods.md`](docs/user-guide/installation-methods.md)
+for release-candidate, source, artifact, and Docker installation options.
 
 📄 Output:
 
@@ -95,9 +102,9 @@ PROJECT_STRUCTURE.md
 ## 🧑‍💻 Usage
 
 ```bash
-doc-gen generate
-doc-gen print
-doc-gen analyze
+doc-gen structure generate
+doc-gen structure print
+doc-gen structure analyze
 doc-gen init
 ```
 

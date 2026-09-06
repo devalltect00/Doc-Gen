@@ -6,10 +6,14 @@ This guide provides a quick overview of how to use DocGen for generating project
 
 ## Quick Start
 
-Install DocGen and generate your first project structure:
+Install Doc-Gen from the private GitLab PyPI registry and generate your first
+project structure. Replace the placeholders with a deploy token that has
+`read_package_registry` access:
 
 ```bash
-pip install doc-gen
+python -m pip install \
+  --index-url "https://<deploy-token-user>:<deploy-token>@gitlab.com/api/v4/projects/<project-id>/packages/pypi/simple" \
+  "doc-gen==1.0.0"
 doc-gen structure generate
 ```
 

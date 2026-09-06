@@ -20,11 +20,17 @@ DocGen is a CLI tool that automatically generates a `PROJECT_STRUCTURE.md` file 
 
 ```bash
 # Install
-pip install doc-gen
+python -m pip install \
+  --index-url "https://<deploy-token-user>:<deploy-token>@gitlab.com/api/v4/projects/<project-id>/packages/pypi/simple" \
+  "doc-gen==1.0.0"
 
 # Generate documentation
 doc-gen structure generate
 ```
+
+The registry is private and requires a deploy token with
+`read_package_registry` access. See the installation methods guide for source,
+artifact, and Docker alternatives.
 
 This creates a PROJECT_STRUCTURE.md file.
 

@@ -6,10 +6,13 @@ Get started with DocGen in 5 minutes.
 
 ## Step 1: Install
 
-Install DocGen using pip:
+Install Doc-Gen from the private GitLab PyPI registry with a deploy token that
+has `read_package_registry` access:
 
 ```bash
-pip install doc-gen
+python -m pip install \
+  --index-url "https://<deploy-token-user>:<deploy-token>@gitlab.com/api/v4/projects/<project-id>/packages/pypi/simple" \
+  "doc-gen==1.0.0"
 ```
 
 ## Step 2: Verify Installation

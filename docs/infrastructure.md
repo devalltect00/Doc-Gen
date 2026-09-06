@@ -23,9 +23,9 @@ GitHub (Primary Repository)
     │                 └── .tar.gz
     │
     ▼
-PyPI (Package Index)
+GitLab Private PyPI Registry
     │
-    └── Package Distribution
+    └── Authenticated Package Distribution
     │
     ▼
 Docker Hub / GHCR
@@ -52,7 +52,7 @@ Docker Compose
 | Tags                    | GitHub         |
 | Issues                  | GitHub         |
 | Discussions             | GitHub         |
-| Package Distribution    | PyPI           |
+| Package Distribution    | GitLab PyPI    |
 | Container Registry      | Docker Hub     |
 | Container Images        | Docker         |
 | Container Orchestration | Docker Compose |
@@ -73,14 +73,17 @@ Responsibilities:
 - Releases
 - Tags
 
-### PyPI (Package Index)
+### GitLab Private PyPI Registry
 
-https://pypi.org/project/doc-gen/
+```text
+https://gitlab.com/api/v4/projects/<project-id>/packages/pypi/simple
+```
 
 Responsibilities:
 
-- Package distribution
-- PyPI releases
+- Private wheel and source-distribution storage
+- Authenticated package installation
+- Immutable package versions produced from protected release tags
 
 ---
 
@@ -101,13 +104,17 @@ https://devalltect00.github.io/doc-gen/
 
 DocGen can be installed using several methods.
 
-### PyPI
+### Private GitLab PyPI Registry
 
-Install from PyPI:
+Install with a deploy token that has `read_package_registry` access:
 
 ```bash
-pip install doc-gen
+python -m pip install \
+  --index-url "https://<deploy-token-user>:<deploy-token>@gitlab.com/api/v4/projects/<project-id>/packages/pypi/simple" \
+  "doc-gen==1.0.0"
 ```
+
+The public PyPI index is not a supported Doc-Gen distribution channel.
 
 ### GitHub Repository
 
@@ -194,11 +201,14 @@ Push to GitHub
         ▼
 GitHub Actions (if configured)
         │
-        ├── Build
-        ├── Test
-        ├── Lint
-        └── Publish to PyPI
+        ├── Test on Python 3.9 and 3.14
+        ├── Check Black formatting on Python 3.14
+        └── Run Ruff linting on Python 3.14
 ```
+
+The compatibility test jobs install `.[test]`. The Python 3.14 quality job
+installs `.[dev]`. Image and release publication are handled by separate,
+guarded workflows described in the CI/CD contract.
 
 ---
 

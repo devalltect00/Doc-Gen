@@ -98,10 +98,21 @@ dependencies = [
 
 [project.optional-dependencies]
 
+# Runtime-compatible test dependencies used by the Python 3.9-3.14 CI matrix.
+# Developer quality tools are intentionally kept in `dev` because their own
+# interpreter requirements may be newer than Doc-Gen's package compatibility.
+test = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+    "packaging>=24.0",
+    "PyYAML>=6.0.2",
+]
+
 dev = [
     # Test
     "pytest>=8.0.0",
     "pytest-cov>=5.0.0",
+    "PyYAML>=6.0.2",
 
     # Formatting
     "black==26.5.1",
@@ -111,6 +122,7 @@ dev = [
 
     # Packaging
     "build>=1.2.0",
+    "packaging>=24.0",
     "twine>=5.0.0",
 
     # Git hooks
@@ -306,7 +318,8 @@ filterwarnings = [
 [tool.black]
 
 line-length = 88
-target-version = ["py311"]
+# Format source for the package's declared Python 3.9 compatibility floor.
+target-version = ["py39"]
 
 # Preserve inactive migration/reference files even when paths are supplied
 # explicitly by pre-commit, an editor, or a developer command.

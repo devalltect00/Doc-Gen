@@ -143,6 +143,20 @@ def test_dev_dependency_group_exists() -> None:
     assert "dev" in optional_deps
 
 
+def test_test_dependency_group_supports_the_python_compatibility_matrix() -> None:
+    """Keep test-only CI installs independent from newer developer tools."""
+    data = load_pyproject()
+    optional_deps = data["project"]["optional-dependencies"]
+
+    assert "test" in optional_deps
+    assert any(item.startswith("pytest>=") for item in optional_deps["test"])
+    assert any(item.startswith("pytest-cov>=") for item in optional_deps["test"])
+    assert any(item.startswith("PyYAML>=") for item in optional_deps["test"])
+    assert not any(item.startswith("black") for item in optional_deps["test"])
+    assert not any(item.startswith("ruff") for item in optional_deps["test"])
+    assert data["tool"]["black"]["target-version"] == ["py39"]
+
+
 def test_docs_dependency_group_exists() -> None:
     data = load_pyproject()
 
