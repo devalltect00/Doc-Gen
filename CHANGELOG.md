@@ -14,8 +14,46 @@ Unreleased
 
 **Summary**
 
-Add the private GitLab PyPI distribution path for Doc Gen and harden the
-release boundary before the v1.0.0-rc.1 promotion commit.
+Record the optional repository-maintenance helper for Doc Gen.
+This is an untagged development checkpoint after the private GitLab Python
+package delivery checkpoint, not a new release or application command.
+
+### Private Package Delivery
+
+#### Distribution
+
+- Publish the `doc-gen` wheel and source distribution to the project-level
+- Keep `doc-gen` as both the Python distribution and installed console-command
+- Convert reviewed SemVer release tags to canonical PEP 440 package versions,
+- Use GitLab's short-lived `CI_JOB_TOKEN` for publication and document deploy
+- Keep published versions immutable: duplicate uploads fail instead of
+
+### Validation And Release Safeguards
+
+#### Distribution
+
+- Validate every pushed tag without granting every tag publication authority.
+- Let unprotected tags complete package validation successfully while skipping
+- Require a protected, non-empty annotated release tag before any external
+- Reject unsupported or ambiguous versions, lightweight tags, empty tag
+- Build exactly one wheel and one source distribution, run `twine check`,
+
+### Pipeline And Documentation Alignment
+
+#### Distribution
+
+- Order the GitLab release path as test → package validation → production
+- Keep retained package artifacts available for inspecting validation-only tag
+- Update CI/CD guidance with the protected-tag contract, deploy-token install
+- Add structural regression coverage for validation-only unprotected tags and
+
+### Validation
+
+#### Distribution
+
+- Passed the full Doc Gen suite: 78 tests.
+- Passed focused GitLab workflow structural checks: 8 tests.
+- Passed Ruff, Black, GitLab YAML parsing, and repository diff checks.
 
 ### ✨ Features
 
@@ -129,6 +167,13 @@ release boundary before the v1.0.0-rc.1 promotion commit.
 - Document the CI matrix, release-tag boundary, dynamic registry behavior, and non-publishing local checks.
 - Record the untagged checkpoints → RC.1 commit and tag → stable commit and tag sequence.
 
+#### Repository
+
+- Refresh README installation guidance for the private GitLab PyPI registry,
+- Align README commands, configuration paths, and runtime requirements with
+- Add dated checkpoint notes to the active TODO histories while retaining
+- Carry a short maintainer-tooling note into the pending release commit
+
 ### ⚙️ CI/CD
 
 #### Doc Gen
@@ -175,46 +220,17 @@ release boundary before the v1.0.0-rc.1 promotion commit.
 
 - Update version from v1.0.0 to v0.1.0
 
-### Private Package Delivery
+### Review Boundary And Follow Up
 
-#### Distribution
+#### Repository
 
-- Publish the `doc-gen` wheel and source distribution to the project-level
-- Keep `doc-gen` as both the Python distribution and installed console-command
-- Convert reviewed SemVer release tags to canonical PEP 440 package versions,
-- Use GitLab's short-lived `CI_JOB_TOKEN` for publication and document deploy
-- Keep published versions immutable: duplicate uploads fail instead of
-
-### Validation And Release Safeguards
-
-#### Distribution
-
-- Validate every pushed tag without granting every tag publication authority.
-- Let unprotected tags complete package validation successfully while skipping
-- Require a protected, non-empty annotated release tag before any external
-- Reject unsupported or ambiguous versions, lightweight tags, empty tag
-- Build exactly one wheel and one source distribution, run `twine check`,
-
-### Pipeline And Documentation Alignment
-
-#### Distribution
-
-- Order the GitLab release path as test → package validation → production
-- Keep retained package artifacts available for inspecting validation-only tag
-- Update CI/CD guidance with the protected-tag contract, deploy-token install
-- Add structural regression coverage for validation-only unprotected tags and
-
-### Validation
-
-#### Distribution
-
-- Passed the full Doc Gen suite: 78 tests.
-- Passed focused GitLab workflow structural checks: 8 tests.
-- Passed Ruff, Black, GitLab YAML parsing, and repository diff checks.
+- This checkpoint records source and documentation review, not a live metadata
+- Track correction of the helper's stale usage path and GitHub topic-limit
+- Require a separate target review and explicit authorization before live
 
 **Tags**
 
-feature • bugfix • docs • breaking-change • tests • ci • distribution
+feature • bugfix • docs • breaking-change • tests • ci • repository • repository-metadata • github • gitlab • dry-run • checkpoint • untagged • maintainer-tooling
 
 ## v0.1.0 (2026-03-23)
 
