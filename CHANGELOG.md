@@ -14,13 +14,44 @@ Unreleased
 
 **Summary**
 
-Correct Doc Gen's GitHub release-note generation so reviewed annotated tag
-messages, release metadata, and Docker usage render as documentation instead of
-being interpreted by the workflow shell.
+Promote the combined implementation from four untagged development checkpoints
+to the first Doc Gen 1.0 release candidate. This is the promotion
+and validation boundary, not another implementation checkpoint.
 
-This is an untagged development checkpoint after the repository-metadata
-maintenance checkpoint. It hardens release presentation without changing the
-Doc Gen CLI, GitLab publication behavior, package version, or release tag.
+### 🚀 Releases
+
+- Replace the unquoted Markdown heredoc with explicit `printf` output so inline
+- Preserve the complete annotated tag message as the primary GitHub Release
+- Populate the version, release type, repository, commit, and workflow fields
+
+#### Rc
+
+- Preserve the rename from the v0.1.0 `print_project_structure` project to
+- Keep `doc-gen init` and `doc-gen structure generate`, `print`, and `analyze`
+- Keep explicit target/output selection, profiles, smart mode, safe ignores,
+- Keep print and analyze read-only, initialization dry-run non-writing and
+- Preserve Python 3.9+ compatibility, Python 3.14 development/container usage,
+- Carry forward active-repository registry naming, root multi-stage builds,
+- Use `doc-gen==1.0.0rc1` as the canonical RC Python package version while
+- Preserve `CI_JOB_TOKEN` publication, authorized deploy-token installation,
+
+### Docker Guidance
+
+- Publish concise commands for pulling the exact release image and verifying
+- Keep prerelease images on their exact tag and explain that only stable
+- Prevent Docker pulls, layer progress, and runner output from executing or
+
+### Regression Protection And Validation
+
+- Extend the developer-workflow regression test to reject the unsafe heredoc
+- Pass the focused workflow tests and the complete suite: 78 tests with 75%
+- Pass targeted Ruff, Black, whitespace, end-of-file, and diff checks.
+
+### Scope
+
+- Keep GitLab's already escaped release-note generation unchanged.
+- Keep this checkpoint untagged; it becomes part of the cumulative
+- Do not change application commands, configuration, package metadata, Docker
 
 ### 📚 Documentation
 
@@ -232,33 +263,28 @@ Doc Gen CLI, GitLab publication behavior, package version, or release tag.
 
 - Update version from v1.0.0 to v0.1.0
 
-### 🚀 Releases
+### Checkpoint Lineage
 
-- Replace the unquoted Markdown heredoc with explicit `printf` output so inline
-- Preserve the complete annotated tag message as the primary GitHub Release
-- Populate the version, release type, repository, commit, and workflow fields
+#### Rc
 
-### Docker Guidance
+- Checkpoint 1 owns the complete application foundation, general GitHub and
+- Checkpoint 2 owns private GitLab Python distribution, canonical PEP 440
+- Checkpoint 3 owns the optional source-checkout repository-metadata helper and
+- Checkpoint 4 owns safe GitHub release-note rendering, populated release
 
-- Publish concise commands for pulling the exact release image and verifying
-- Keep prerelease images on their exact tag and explain that only stable
-- Prevent Docker pulls, layer progress, and runner output from executing or
+### Recorded Validation And Final Rc Gates
 
-### Regression Protection And Validation
+#### Rc
 
-- Extend the developer-workflow regression test to reject the unsafe heredoc
-- Pass the focused workflow tests and the complete suite: 78 tests with 75%
-- Pass targeted Ruff, Black, whitespace, end-of-file, and diff checks.
-
-### Scope
-
-- Keep GitLab's already escaped release-note generation unchanged.
-- Keep this checkpoint untagged; it becomes part of the cumulative
-- Do not change application commands, configuration, package metadata, Docker
+- Treat the validation recorded in checkpoints 1 and 2 as historical evidence,
+- Re-run the approved test, lint, formatting, pre-commit, packaging,
+- Confirm the reviewed target paths, output or mutation boundaries, package
+- Review the maintainer helper's pending follow-ups separately; this promotion
+- Document and validate release-blocking fixes discovered during candidate
 
 **Tags**
 
-release • feature • bugfix • docs • breaking-change • tests • ci • github-actions • release-notes • docker • markdown
+release • feature • bugfix • docs • breaking-change • tests • ci • rc
 
 ## v0.1.0 (2026-03-23)
 

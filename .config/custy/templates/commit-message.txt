@@ -1,53 +1,69 @@
-fix(release): checkpoint safe GitHub release-note rendering
+release(rc): promote Doc Gen v1.0.0-rc.1
 
-Correct Doc Gen's GitHub release-note generation so reviewed annotated tag
-messages, release metadata, and Docker usage render as documentation instead of
-being interpreted by the workflow shell.
+Promote the combined implementation from four untagged development checkpoints
+to the first Doc Gen 1.0 release candidate. This is the promotion
+and validation boundary, not another implementation checkpoint.
 
-This is an untagged development checkpoint after the repository-metadata
-maintenance checkpoint. It hardens release presentation without changing the
-Doc Gen CLI, GitLab publication behavior, package version, or release tag.
+### 🧭 Checkpoint lineage
 
-### 📝 Release-note generation
+- Checkpoint 1 owns the complete application foundation, general GitHub and
+  GitLab CI/CD corrections, runtime compatibility, Docker build-version
+  resolution, ignore rules, quality tooling, regression tests, and documentation.
+- Checkpoint 2 owns private GitLab Python distribution, canonical PEP 440
+  package metadata, protected-tag publication, validation-only unprotected
+  tags, and immutable package safeguards.
+- Checkpoint 3 owns the optional source-checkout repository-metadata helper and
+  related README/TODO maintenance. It remains outside the installed CLI and
+  automated release workflow; its recorded follow-ups remain subject to review.
+- Checkpoint 4 owns safe GitHub release-note rendering, populated release
+  metadata, literal Docker examples, and regression protection.
 
-- Replace the unquoted Markdown heredoc with explicit `printf` output so inline
-  and fenced backticks remain literal release content.
-- Preserve the complete annotated tag message as the primary GitHub Release
-  description.
-- Populate the version, release type, repository, commit, and workflow fields
-  without command substitution or missing values.
+### ✅ Release-candidate contract
 
-### 🐳 Docker guidance
+- Preserve the rename from the v0.1.0 `print_project_structure` project to
+  Doc Gen introduced with v1.0.0-rc.1.
+- Keep `doc-gen init` and `doc-gen structure generate`, `print`, and `analyze`
+  as the supported public command hierarchy.
+- Keep explicit target/output selection, profiles, smart mode, safe ignores,
+  namespaced configuration, and concise command errors.
+- Keep print and analyze read-only, initialization dry-run non-writing and
+  non-interactive, and generation dry-run behind the writer-level mutation
+  boundary.
+- Preserve Python 3.9+ compatibility, Python 3.14 development/container usage,
+  compatible traversal and TOML loading, and separate test/quality dependencies.
+- Carry forward active-repository registry naming, root multi-stage builds,
+  non-empty annotated release-tag checks, package/tag version agreement,
+  complete provider release notes, exact prerelease images, and stable-only
+  `latest`.
+- Use `doc-gen==1.0.0rc1` as the canonical RC Python package version while
+  retaining `v1.0.0-rc.1` as the SemVer Git tag.
+- Preserve `CI_JOB_TOKEN` publication, authorized deploy-token installation,
+  and the package validation → production image → private package → release
+  ordering established by checkpoint 2.
 
-- Publish concise commands for pulling the exact release image and verifying
-  the `doc-gen` CLI with `--help`.
-- Keep prerelease images on their exact tag and explain that only stable
-  releases update `latest`.
-- Prevent Docker pulls, layer progress, and runner output from executing or
-  appearing while release notes are assembled.
+### 🧪 Recorded validation and final RC gates
 
-### 🧪 Regression protection and validation
+- Treat the validation recorded in checkpoints 1 and 2 as historical evidence,
+  not a substitute for checks against the exact RC commit.
+- Re-run the approved test, lint, formatting, pre-commit, packaging,
+  documentation, CLI-help, dry-run, Make, Docker, Compose, and workflow checks.
+- Confirm the reviewed target paths, output or mutation boundaries, package
+  metadata, image destinations, annotated tag message, and release links.
+- Review the maintainer helper's pending follow-ups separately; this promotion
+  message does not assert that live metadata synchronization was validated.
+- Document and validate release-blocking fixes discovered during candidate
+  review before promoting the stable release.
 
-- Extend the developer-workflow regression test to reject the unsafe heredoc
-  and require literal Docker examples and populated metadata variables.
-- Pass the focused workflow tests and the complete suite: 78 tests with 75%
-  overall coverage.
-- Pass targeted Ruff, Black, whitespace, end-of-file, and diff checks.
-
-### 📌 Scope
-
-- Keep GitLab's already escaped release-note generation unchanged.
-- Keep this checkpoint untagged; it becomes part of the cumulative
-  `v1.0.0-rc.1` and stable `v1.0.0` release messages.
-- Do not change application commands, configuration, package metadata, Docker
-  publication policy, or external repository state.
-
-Refs: v1.0.0-rc.1 preparation
-Previous checkpoint: commit-message-v1.0.0-development-checkpoint-3.txt
-Tag: none
+Tag: v1.0.0-rc.1
+Previous release: v0.1.0
+Checkpoints:
+- commit-message-v1.0.0-development-checkpoint.txt
+- commit-message-v1.0.0-development-checkpoint-2.txt
+- commit-message-v1.0.0-development-checkpoint-3.txt
+- commit-message-v1.0.0-development-checkpoint-4.txt
 
 🔖 **Tags**:
-
-- Type: `#fix`, `#release`, `#ci`
-- Scope: `#github-actions`, `#release-notes`, `#docker`, `#markdown`
-- Safety: `#annotated-tags`, `#regression-test`, `#stable-latest`
+- Type: `#release`, `#validation`
+- Delivery: `#release-candidate`, `#semver`, `#github`, `#gitlab`
+- Quality: `#tests`, `#dry-run`, `#packaging`, `#compatibility`
+- Safety: `#annotated-tags`, `#protected-tags`, `#stable-latest`

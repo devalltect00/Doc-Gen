@@ -187,11 +187,7 @@ Common directories include:
 │   ├── infrastructure.md
 │   ├── installation.md
 │   ├── project_structure.md
-│   ├── PROJECT_STRUCTUREe.md
-│   ├── TODO_tracking_history copy before.md
 │   ├── TODO_tracking_history.md
-│   ├── TODO_tracking_history_v1.0.0-rc.1.md
-│   ├── TODO_tracking_history_v1.0.0.md
 │   └── usage.md
 ├── logs/ ... (collapsed)
 ├── make
@@ -329,7 +325,6 @@ Common directories include:
 ├── README.md
 ├── requirements.txt
 ├── SECURITY.md
-├── temp.txt
 └── TODO.md
 ```
 

@@ -4,9 +4,17 @@
 
 # docs/TODO.md
 
+> Cumulative snapshot for **v1.0.0-rc.1**. Earlier tasks, unfinished work,
+> considerations, ideas, cancelled items, and notes are intentionally retained.
+
+# Doc Gen TODO Tracking History — v1.0.0-rc.1
+
 > Current status: see the [2026-09-06 checkpoint update](#checkpoint-4-2026-09-06).
 > Older checkboxes, test counts, plans, and decisions are preserved as recorded;
 > they are historical context, not proof that every current release gate passed.
+
+> Cumulative snapshot for **v1.0.0-rc.1**. Earlier tasks, unfinished work,
+> considerations, ideas, cancelled items, and notes are intentionally retained.
 
 ---
 
@@ -248,6 +256,148 @@ the stable Git release remains pending.
 #### Core Features
 
 - [x] Simple `PROJECT_STRUCTURE.md` file generator
+
+---
+
+## Since v0.1.0 — `print_project_structure`
+
+- [x] Create a simple `print_project_structure` utility that detects a basic project type and generates a readable directory tree.
+- [x] Print the generated project structure in the terminal and optionally save it as a Markdown document.
+- [x] Support built-in exclusions and additional ignore patterns from `.projectignore`.
+- [x] Publish the original utility under the `print_project_structure` project name throughout the v0.1.0 release.
+
+---
+
+## Since v1.0.0-rc.1
+
+### Version context
+
+| Field                        | Value                            |
+| ---------------------------- | -------------------------------- |
+| Version                      | `v1.0.0-rc.1`                    |
+| Previous version             | `v0.1.0`                         |
+| Release type                 | Major redesign release candidate |
+| Version strategy             | Semantic Versioning              |
+| Package compatibility        | Python 3.9+                      |
+| Standard development/runtime | Python 3.14                      |
+
+### Project rename and identity
+
+- [x] Rename the project from `print_project_structure` to **Doc Gen** as part of the v1.0.0-rc.1 redesign.
+- [x] Introduce `doc-gen` as the installed CLI command for the new v1.0 release line.
+- [x] Replace the original single-file identity with the packaged `app/doc_gen` application structure.
+
+### Completed release-candidate scope
+
+#### Structure workflows
+
+- [x] Replace the standalone script with the `doc-gen` console application.
+- [x] Add `doc-gen structure generate [target]` for Markdown documentation generation.
+- [x] Add read-only `doc-gen structure print [target]` and `doc-gen structure analyze [target]` workflows.
+- [x] Add `doc-gen init` for namespaced project configuration.
+- [x] Add configurable targets, output paths, depth, file visibility, directory collapse, project type, verbosity, profiles, smart mode, and ignores.
+- [x] Add minimal, default, and detailed profiles.
+- [x] Detect project characteristics for smart-mode behavior.
+
+#### Scanning, rendering, and persistence
+
+- [x] Add deterministic repository discovery models and services.
+- [x] Render overview, project tree, root-file, directory-detail, and notes sections.
+- [x] Separate Markdown rendering from file persistence through a dedicated writer.
+- [x] Collect repository metadata, statistics, and project-type details.
+- [x] Apply built-in and configurable ignore rules for repositories, environments, caches, dependencies, and build outputs.
+- [x] Keep `PROJECT_STRUCTURE.md` as the conventional default while supporting an explicit output path.
+
+#### CLI, configuration, and safety
+
+- [x] Add a Typer command hierarchy with Rich banners, help, panels, tables, progress, and summaries.
+- [x] Add centralized command error boundaries, domain exceptions, concise remediation, and reliable nonzero exits.
+- [x] Keep normal-mode output free of raw tracebacks while preserving full debug diagnostics.
+- [x] Add `.config/doc_gen/config.toml` with CLI → configuration → default resolution.
+- [x] Add initialization builders, models, registries, presenters, and scaffold services.
+- [x] Add configurable console and rotating-file logging.
+
+#### Dry-run guarantees
+
+- [x] Add `--dry-run` to initialization and every structure command.
+- [x] Prevent dry-run initialization from creating or overwriting files and from prompting.
+- [x] Allow generation dry-run to scan and render in memory without creating output directories or files.
+- [x] Keep print and analyze read-only when dry-run is supplied.
+- [x] Add configuration support and CLI override behavior for dry-run.
+- [x] Present generated previews distinctly from persisted results.
+
+#### Architecture and developer workflow
+
+- [x] Separate CLI, configuration, scanner, detector, analyzer, smart mode, profiles, renderers, writer, initialization, UI, and logging responsibilities.
+- [x] Replace hardcoded `os`-based traversal and writes with focused services and `pathlib`-oriented models.
+- [x] Add shared results, domain exceptions, themes, and utilities.
+- [x] Add `AGENTS.md` and engineering guidance for output safety, dry-run, tests, documentation, and releases.
+- [x] Add modular Make, Docker, Compose, remote-image, CI/CD, packaging, Ruff, Black, Pytest, MkDocs, and pre-commit workflows.
+- [x] Correct Make option ordering for Typer commands with optional target paths.
+
+#### Tests and documentation
+
+- [x] Add CLI, configuration, initialization, scanner, generator, renderer, presenter, service, and utility tests.
+- [x] Add coverage for generate, print, analyze, profiles, smart mode, detection, ignores, output rendering, and option resolution.
+- [x] Prove dry-run initialization creates no scaffold and dry-run generation never invokes the writer.
+- [x] Add pre-commit configuration validation and local/Docker/Compose/Make help checks.
+- [x] Record the release baseline as 72 passing tests with 74% measured coverage on Python 3.14.
+- [x] Document installation, configuration, commands, profiles, output, safety, architecture, testing, Docker, Compose, Make, and migration.
+- [x] Prepare separate internal commit and public release messages for RC.1 and stable 1.0.0.
+
+### Breaking-change checklist
+
+- [x] Document replacement of direct `print_project_structure.py` execution with the `doc-gen` command.
+- [x] Document the explicit `structure generate`, `print`, and `analyze` workflows.
+- [x] Document migration to `.config/doc_gen/config.toml`.
+- [x] Document CLI/configuration-based targets and output paths in place of hardcoded behavior.
+- [x] Document the new package layout and scanner/renderer/writer extension boundaries.
+
+### RC validation checklist
+
+#### CI/CD and compatibility safeguards completed for RC.1
+
+- [x] Validate Python 3.9 and 3.14 in hosted CI.
+- [x] Replace runtime features that violated the declared Python 3.9 compatibility floor.
+- [x] Add conditional `tomli` support, analyzer regression coverage, and Python 3.9 container smoke validation.
+- [x] Derive provider registry destinations from the active repository and use the root multi-stage Dockerfile.
+- [x] Require a non-empty annotated SemVer tag before production image or provider-release publication.
+- [x] Publish exact prerelease tags without updating `latest`; reserve `latest` for stable releases.
+- [x] Preserve full annotated tag messages as provider release notes and attach package artifacts.
+- [x] Keep the comprehensive redesign commit as an untagged checkpoint and reserve the RC.1 tag for CI/CD finalization.
+
+- [ ] Install RC.1 in an isolated environment and inspect all command help.
+- [ ] Preview initialization and review the proposed configuration.
+- [ ] Generate previews for disposable repositories of different sizes and project types.
+- [ ] Exercise minimal, default, detailed, and smart-mode behavior.
+- [ ] Verify dry-run generation creates neither an output directory nor a Markdown file.
+- [ ] Verify print and analyze remain read-only.
+- [ ] Review generated output structure, ignores, paths, summaries, and errors.
+- [ ] Validate local, Docker, Compose, remote-image, Make, package, and documentation workflows.
+- [ ] Commit, tag, publish, and verify `v1.0.0-rc.1` only with explicit release approval.
+
+### Deferred beyond RC.1
+
+- [ ] Complete stable-release cleanup and incorporate release-blocking corrections.
+- [ ] Add further project detectors only when their behavior can be deterministic and tested.
+- [ ] Consider interactive or visual workflows only after the core CLI contract is stable.
+- [ ] Review future pre-commit upgrades intentionally rather than as an unrelated release change.
+
+### Notes
+
+- The former v0.1.0 implementation was a small standalone utility; 1.0 defines
+  a new supported CLI and architecture baseline.
+- This file does not claim that external release or publication operations have
+  been completed.
+
+---
+
+## Additional TODO source review
+
+The repository-root `TODO.md` is currently empty, so it contributes no extra
+completed, pending, cancelled, consideration, or idea items to this snapshot.
+The historical and version-specific content above remains the authoritative
+record until a new root TODO entry is added.
 
 ---
 
