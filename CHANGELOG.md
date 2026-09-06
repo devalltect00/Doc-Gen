@@ -14,9 +14,43 @@ Unreleased
 
 **Summary**
 
-Record the optional repository-maintenance helper for Doc Gen.
-This is an untagged development checkpoint after the private GitLab Python
-package delivery checkpoint, not a new release or application command.
+Correct Doc Gen's GitHub release-note generation so reviewed annotated tag
+messages, release metadata, and Docker usage render as documentation instead of
+being interpreted by the workflow shell.
+
+This is an untagged development checkpoint after the repository-metadata
+maintenance checkpoint. It hardens release presentation without changing the
+Doc Gen CLI, GitLab publication behavior, package version, or release tag.
+
+### 📚 Documentation
+
+#### Doc Gen
+
+- Expanded the README and added installation, configuration, usage, how-to, infrastructure, user, developer, architecture, reference, and testing guides.
+- Added a dedicated dry-run guide covering every command, mutation boundaries, configuration precedence, and Make examples.
+- Added MkDocs Material navigation and Docker-based documentation builds.
+- Added project structure and architecture documentation that explains scanning, rendering, generation, and persistence responsibilities.
+- Added local, Docker, Compose, remote-image, and modular Make workflow guidance.
+- Add a shell-free Git build-version resolver and pass `DOC_GEN_BUILD_VERSION` into Docker builds that exclude `.git`.
+- Root-anchor generated build and backup ignores and pin Ruff and Black consistently.
+- Make command-help tests ANSI-independent across hosted terminals.
+- Document the CI matrix, release-tag boundary, dynamic registry behavior, and non-publishing local checks.
+- Record the untagged checkpoints → RC.1 commit and tag → stable commit and tag sequence.
+
+#### Repository
+
+- Refresh README installation guidance for the private GitLab PyPI registry,
+- Align README commands, configuration paths, and runtime requirements with
+- Add dated checkpoint notes to the active TODO histories while retaining
+- Carry a short maintainer-tooling note into the pending release commit
+
+### Review Boundary And Follow Up
+
+#### Repository
+
+- This checkpoint records source and documentation review, not a live metadata
+- Track correction of the helper's stale usage path and GitHub topic-limit
+- Require a separate target review and explicit authorization before live
 
 ### Private Package Delivery
 
@@ -152,28 +186,6 @@ package delivery checkpoint, not a new release or application command.
 - Added command-help and developer-workflow validation for local, Docker, Compose, remote-image, and Make entry points.
 - Validated the release-candidate baseline with 72 passing tests and 74% measured coverage on Python 3.14.
 
-### 📚 Documentation
-
-#### Doc Gen
-
-- Expanded the README and added installation, configuration, usage, how-to, infrastructure, user, developer, architecture, reference, and testing guides.
-- Added a dedicated dry-run guide covering every command, mutation boundaries, configuration precedence, and Make examples.
-- Added MkDocs Material navigation and Docker-based documentation builds.
-- Added project structure and architecture documentation that explains scanning, rendering, generation, and persistence responsibilities.
-- Added local, Docker, Compose, remote-image, and modular Make workflow guidance.
-- Add a shell-free Git build-version resolver and pass `DOC_GEN_BUILD_VERSION` into Docker builds that exclude `.git`.
-- Root-anchor generated build and backup ignores and pin Ruff and Black consistently.
-- Make command-help tests ANSI-independent across hosted terminals.
-- Document the CI matrix, release-tag boundary, dynamic registry behavior, and non-publishing local checks.
-- Record the untagged checkpoints → RC.1 commit and tag → stable commit and tag sequence.
-
-#### Repository
-
-- Refresh README installation guidance for the private GitLab PyPI registry,
-- Align README commands, configuration paths, and runtime requirements with
-- Add dated checkpoint notes to the active TODO histories while retaining
-- Carry a short maintainer-tooling note into the pending release commit
-
 ### ⚙️ CI/CD
 
 #### Doc Gen
@@ -220,17 +232,33 @@ package delivery checkpoint, not a new release or application command.
 
 - Update version from v1.0.0 to v0.1.0
 
-### Review Boundary And Follow Up
+### 🚀 Releases
 
-#### Repository
+- Replace the unquoted Markdown heredoc with explicit `printf` output so inline
+- Preserve the complete annotated tag message as the primary GitHub Release
+- Populate the version, release type, repository, commit, and workflow fields
 
-- This checkpoint records source and documentation review, not a live metadata
-- Track correction of the helper's stale usage path and GitHub topic-limit
-- Require a separate target review and explicit authorization before live
+### Docker Guidance
+
+- Publish concise commands for pulling the exact release image and verifying
+- Keep prerelease images on their exact tag and explain that only stable
+- Prevent Docker pulls, layer progress, and runner output from executing or
+
+### Regression Protection And Validation
+
+- Extend the developer-workflow regression test to reject the unsafe heredoc
+- Pass the focused workflow tests and the complete suite: 78 tests with 75%
+- Pass targeted Ruff, Black, whitespace, end-of-file, and diff checks.
+
+### Scope
+
+- Keep GitLab's already escaped release-note generation unchanged.
+- Keep this checkpoint untagged; it becomes part of the cumulative
+- Do not change application commands, configuration, package metadata, Docker
 
 **Tags**
 
-feature • bugfix • docs • breaking-change • tests • ci • repository • repository-metadata • github • gitlab • dry-run • checkpoint • untagged • maintainer-tooling
+release • feature • bugfix • docs • breaking-change • tests • ci • github-actions • release-notes • docker • markdown
 
 ## v0.1.0 (2026-03-23)
 
