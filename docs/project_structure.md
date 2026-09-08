@@ -181,7 +181,9 @@ Common directories include:
 │   ├── badges.md
 │   ├── ci-cd.md
 │   ├── configuration.md
+│   ├── DEVELOPMENT_GUIDE.md
 │   ├── dry-run.md
+│   ├── example_command.txt
 │   ├── how-to-use.md
 │   ├── index.md
 │   ├── infrastructure.md
@@ -312,13 +314,11 @@ Common directories include:
 ├── AGENTS.md
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md
-├── DEVELOPMENT_GUIDE.md
 ├── docker-compose.dev.yml
 ├── docker-compose.prod.yml
 ├── docker-compose.yml
 ├── Dockerfile
 ├── ENGINEERING_EXECUTION_POLICY.md
-├── example_command.txt
 ├── LICENSE
 ├── Makefile
 ├── mkdocs.yml
@@ -342,7 +342,6 @@ Common directories include:
 | `SECURITY.md` | Security policy and vulnerability reporting instructions. |
 | `TODO.md` | Pending tasks and future improvements. |
 | `AGENTS.md` | Instructions and guidance for AI agents and automation tools. |
-| `DEVELOPMENT_GUIDE.md` | Guide for developers working on the project. |
 | `ENGINEERING_EXECUTION_POLICY.md` | Engineering execution standards and policies. |
 | `pyproject.toml` | Main Python project configuration file. |
 | `requirements.txt` | Python package dependencies. |

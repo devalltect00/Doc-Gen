@@ -14,8 +14,15 @@ Unreleased
 
 **Summary**
 
-Prepare Doc Gen's production image workflows for the stable `v1.0.0` release
-after the published `v1.0.0-rc.1` validation boundary.
+Promote Doc Gen from `v1.0.0-rc.1` to the stable `v1.0.0` release after the
+release-candidate review period.
+
+This commit finalizes the redesigned documentation CLI and carries forward the
+generation, printing, analysis, configuration, profiles, smart mode, dry-run,
+layered architecture, testing, tooling, container, CI/CD, and documentation
+foundation validated in RC.1. It also preserves the project rename from the
+v0.1.0 `print_project_structure` identity to Doc Gen introduced in RC.1 and
+includes the post-RC stable-image stabilization work.
 
 ### Stable Image Aliases
 
@@ -30,9 +37,49 @@ after the published `v1.0.0-rc.1` validation boundary.
 - Document immutable exact tags, moving minor and major aliases, and the
 - Preserve the existing annotated-tag, package-version, protected-publication,
 
+### 🚀 Releases
+
+- Carry forward checkpoint 1's application foundation, general CI/CD,
+- Carry forward checkpoint 2's private GitLab Python distribution and
+- Carry forward checkpoint 3's source-checkout maintenance helper without
+- Carry forward checkpoint 4's safe GitHub release-note rendering, populated
+- Carry forward the post-RC stabilization checkpoint's exact, minor, major,
+- Promote the combined result reviewed in RC.1; this stable commit owns only
+- Apply final repository cleanup and remove temporary development artifacts that are not part of the supported product.
+- Incorporate release-blocking fixes, migration clarifications, and documentation corrections identified during RC validation.
+- Review package metadata, generated configuration, command help, public documentation, CI/CD definitions, and container destinations.
+- Re-run the approved tests, coverage, lint, formatting, documentation, packaging, CLI, Make, Docker, Compose, and dry-run checks.
+- Preserve completed v1.0 development history and remaining future work in project tracking documentation.
+
+### Stable Promotion
+
+- Carry forward centralized command error boundaries, unified domain exceptions, concise remediation, hidden normal-mode tracebacks, and reliable failure exits.
+- Carry forward the complete feature, refactor, bug-fix, test, tooling, and documentation set introduced in `v1.0.0-rc.1`.
+- Keep the supported hierarchy centered on `doc-gen init` and `doc-gen structure generate`, `print`, and `analyze`.
+- Keep print and analyze read-only and keep generation dry-run behind a writer-level mutation boundary.
+- Keep `.config/doc_gen/config.toml`, profiles, smart mode, explicit targets, and explicit output selection as the supported configuration model.
+- Keep Python 3.9+ package compatibility and Python 3.14 as the standard development and container runtime.
+- Keep the Python 3.9-compatible traversal, model, annotation, and TOML-loading corrections validated for RC.1.
+- Keep dynamic provider registry destinations, annotated-tag and package-version validation, exact prerelease images, stable-only major, minor, and `latest` aliases, full tag-message release notes, and root multi-stage Docker builds established for RC.1 and finalized after RC validation.
+- Prepare the repository for the stable SemVer tag and public release publication.
+
+### Stable Private Package
+
+- Promote the private GitLab PyPI distribution from the validated RC package
+- Preserve protected-tag publication, canonical PEP 440 metadata, wheel and
+- Keep unprotected tags validation-only so temporary tag pipelines do not
+
+### Repository Maintenance Tooling
+
+- Carry forward the optional source-checkout metadata helper introduced in
+- Keep repository description and provider topics independently maintainable
+- Keep this helper outside the installed application command surface and
+- Retain the README and cumulative TODO updates without presenting a
+- Review the helper follow-ups recorded in the TODO history before release;
+
 **Tags**
 
-docs • stable-aliases • regression-tests • documentation
+release • docs • repository-cleanup • release-validation • documentation
 
 ## v1.0.0-rc.1 (2026-09-06)
 

@@ -1,33 +1,93 @@
-ci(release): prepare stable Docker version aliases
+release(main): promote Doc Gen v1.0.0
 
-Prepare Doc Gen's production image workflows for the stable `v1.0.0` release
-after the published `v1.0.0-rc.1` validation boundary.
+Promote Doc Gen from `v1.0.0-rc.1` to the stable `v1.0.0` release after the
+release-candidate review period.
 
-### 🐋 Stable image aliases
+This commit finalizes the redesigned documentation CLI and carries forward the
+generation, printing, analysis, configuration, profiles, smart mode, dry-run,
+layered architecture, testing, tooling, container, CI/CD, and documentation
+foundation validated in RC.1. It also preserves the project rename from the
+v0.1.0 `print_project_structure` identity to Doc Gen introduced in RC.1 and
+includes the post-RC stable-image stabilization work.
 
-- Publish one stable image under the exact `v1.0.0` tag and the coordinated
-  `v1.0`, `v1`, and `latest` aliases on GitHub and GitLab.
-- Keep prereleases exact-only so candidate images cannot move stable aliases.
-- Derive major and minor aliases from the validated release tag and keep all
-  aliases attached to the same built image.
-- Apply the same stable-versus-prerelease alias classification on GitHub and
-  GitLab while preserving the package gate's rejection of build metadata.
+### 🧭 Release lineage
 
-### 🧪 Regression protection and documentation
+- Carry forward checkpoint 1's application foundation, general CI/CD,
+  compatibility, build tooling, tests, and documentation.
+- Carry forward checkpoint 2's private GitLab Python distribution and
+  package-publication safeguards.
+- Carry forward checkpoint 3's source-checkout maintenance helper without
+  presenting it as an installed CLI feature.
+- Carry forward checkpoint 4's safe GitHub release-note rendering, populated
+  metadata, literal Docker examples, and regression protection.
+- Carry forward the post-RC stabilization checkpoint's exact, minor, major,
+  and `latest` stable image aliases with prerelease isolation.
+- Promote the combined result reviewed in RC.1; this stable commit owns only
+  final cleanup, reviewed corrections, and release validation.
 
-- Add structural workflow tests for alias generation, provider parity, and
-  prerelease isolation.
-- Document immutable exact tags, moving minor and major aliases, and the
-  stable-only `latest` policy in repository and public documentation.
-- Preserve the existing annotated-tag, package-version, protected-publication,
-  and provider-registry safeguards.
+### 🧹 Release finalization
 
-Release phase: post-RC stabilization
-Tag: none
+- Apply final repository cleanup and remove temporary development artifacts that are not part of the supported product.
+- Incorporate release-blocking fixes, migration clarifications, and documentation corrections identified during RC validation.
+- Review package metadata, generated configuration, command help, public documentation, CI/CD definitions, and container destinations.
+- Re-run the approved tests, coverage, lint, formatting, documentation, packaging, CLI, Make, Docker, Compose, and dry-run checks.
+- Preserve completed v1.0 development history and remaining future work in project tracking documentation.
+
+### ✅ Stable promotion
+
+- Carry forward centralized command error boundaries, unified domain exceptions, concise remediation, hidden normal-mode tracebacks, and reliable failure exits.
+
+- Carry forward the complete feature, refactor, bug-fix, test, tooling, and documentation set introduced in `v1.0.0-rc.1`.
+- Keep the supported hierarchy centered on `doc-gen init` and `doc-gen structure generate`, `print`, and `analyze`.
+- Keep print and analyze read-only and keep generation dry-run behind a writer-level mutation boundary.
+- Keep `.config/doc_gen/config.toml`, profiles, smart mode, explicit targets, and explicit output selection as the supported configuration model.
+- Keep Python 3.9+ package compatibility and Python 3.14 as the standard development and container runtime.
+- Keep the Python 3.9-compatible traversal, model, annotation, and TOML-loading corrections validated for RC.1.
+- Keep dynamic provider registry destinations, annotated-tag and package-version validation, exact prerelease images, stable-only major, minor, and `latest` aliases, full tag-message release notes, and root multi-stage Docker builds established for RC.1 and finalized after RC validation.
+- Prepare the repository for the stable SemVer tag and public release publication.
+
+### 📦 Stable private package
+
+- Promote the private GitLab PyPI distribution from the validated RC package
+  to immutable `doc-gen==1.0.0` artifacts.
+- Preserve protected-tag publication, canonical PEP 440 metadata, wheel and
+  source-distribution checks, and deploy-token installation guidance.
+- Keep unprotected tags validation-only so temporary tag pipelines do not
+  publish packages, production images, or provider releases.
+
+### 📦 Release scope
+
+Doc Gen 1.0 promotes the RC.1 rename of the v0.1.0
+`print_project_structure` project and replaces its standalone project-tree
+script with a structured repository-documentation toolkit. It combines separate
+generation, printing, and analysis workflows with reusable profiles, smart
+detection, safe ignores, Rich terminal guidance, dry-run simulation, layered
+scanner/renderer/writer components, automated tests, MkDocs documentation,
+modular Make workflows, containers, packaging, and CI/CD support.
+
+### 🧰 Repository maintenance tooling
+
+- Carry forward the optional source-checkout metadata helper introduced in
+  untagged checkpoint 3 (`commit-message-v1.0.0-development-checkpoint-3.txt`).
+- Keep repository description and provider topics independently maintainable
+  in `pyproject.toml`, with preview-first usage and explicit warnings about
+  replacement, empty-topic clearing, and live provider updates.
+- Keep this helper outside the installed application command surface and
+  automated release/publication flow; it is maintainer tooling, not a new
+  end-user CLI feature.
+- Retain the README and cumulative TODO updates without presenting a
+  development checkpoint as a tagged release.
+- Review the helper follow-ups recorded in the TODO history before release;
+  this note does not assert that live synchronization has been validated.
+
+Tag: v1.0.0
 Previous release: v1.0.0-rc.1
-Target release: v1.0.0
+Previous stable release: v0.1.0
+Release lineage: v0.1.0 → pre-RC checkpoints 1–4 → v1.0.0-rc.1 → post-RC stabilization → v1.0.0
+Changelog: generated separately
 
 🔖 **Tags**:
-- Type: `#ci`, `#release`
-- Delivery: `#docker`, `#github-actions`, `#gitlab-ci`
-- Scope: `#stable-aliases`, `#regression-tests`, `#documentation`
+- Type: `#release`, `#maintenance`
+- Delivery: `#stable`, `#semver`, `#release`
+- Scope: `#repository-cleanup`, `#release-validation`, `#documentation`
+- Product: `#doc-gen`, `#project-structure`, `#markdown`, `#analysis`
