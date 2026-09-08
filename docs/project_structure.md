@@ -302,6 +302,7 @@ Common directories include:
 │   └── test_dry_run.py
 ├── venv/ ... (collapsed)
 ├── venv_3_14/ ... (collapsed)
+├── .coverage
 ├── .dockerignore
 ├── .gitignore
 ├── .gitlab-ci.yml

@@ -173,6 +173,19 @@ and published utility image commands.
 
 ## Troubleshooting
 
+### Published release tags
+
+Stable production releases publish four coordinated references to the same
+image: exact `v1.0.0`, minor `v1.0`, major `v1`, and `latest`. Pin CI and
+reproducible automation to the immutable exact tag. The other aliases move only
+when a compatible stable release is published. Prereleases such as
+`v1.0.0-rc.1` publish only their exact tag.
+
+GitHub and GitLab enforce the same alias and prerelease policy. See the
+[CI/CD and release contract](../ci-cd.md) for publication safeguards.
+
+---
+
 ### Docker not installed
 
 Install Docker Desktop from https://www.docker.com/products/docker-desktop
