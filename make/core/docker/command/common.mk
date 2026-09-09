@@ -13,12 +13,12 @@ d-build-base: docker-check
 	$(DOCKER) build -f $(DOCKERFILE_BASE) --target base -t $(DOCKER_IMAGE_BASE) .
 
 d-build-dev: d-build-base
-	$(DOCKER) build -f $(DOCKERFILE_BASE) --target development -t $(DOCKER_IMAGE_DEV) .
+	$(DOCKER) build $(DOCKER_BUILD_VERSION_ARG) -f $(DOCKERFILE_BASE) --target development -t $(DOCKER_IMAGE_DEV) .
 
 d-build-prod: d-build-base
-	$(DOCKER) build -f $(DOCKERFILE_BASE) --target production -t $(DOCKER_IMAGE_PROD) .
+	$(DOCKER) build $(DOCKER_BUILD_VERSION_ARG) -f $(DOCKERFILE_BASE) --target production -t $(DOCKER_IMAGE_PROD) .
 
 d-build-all: docker-check
 	$(DOCKER) build -f $(DOCKERFILE_BASE) --target base -t $(DOCKER_IMAGE_BASE) .
-	$(DOCKER) build -f $(DOCKERFILE_BASE) --target development -t $(DOCKER_IMAGE_DEV) .
-	$(DOCKER) build -f $(DOCKERFILE_BASE) --target production -t $(DOCKER_IMAGE_PROD) .
+	$(DOCKER) build $(DOCKER_BUILD_VERSION_ARG) -f $(DOCKERFILE_BASE) --target development -t $(DOCKER_IMAGE_DEV) .
+	$(DOCKER) build $(DOCKER_BUILD_VERSION_ARG) -f $(DOCKERFILE_BASE) --target production -t $(DOCKER_IMAGE_PROD) .

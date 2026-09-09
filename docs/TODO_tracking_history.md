@@ -600,3 +600,47 @@ development checkpoints 1–4.
 - The exact `v1.0.0` image tag is the recommended reproducible automation pin.
 - `v1.0`, `v1`, and `latest` are intentionally moving aliases advanced only by stable releases.
 - The published RC.1 records and pre-RC checkpoint history remain unchanged.
+
+---
+
+<a id="v101-patch-release"></a>
+
+## Since v1.0.1
+
+Version scope: **v1.0.1 patch release**, following published v1.0.0.
+
+### ✅ Root CLI consistency
+
+- [x] Route bare `doc-gen` invocation through the application callback.
+- [x] Show the banner before root help by default and preserve `--no-banner` suppression.
+- [x] Return a successful exit status after displaying bare root help.
+- [x] Preserve explicit help, version, initialization, structure commands, and dry-run behavior.
+- [x] Add CLI regression coverage for bare invocation with and without the banner.
+- [x] Verify the v1.0.1 production image displays the banner, exact version, and root help on bare invocation.
+
+### ✅ Release documentation
+
+- [x] Synchronize both source fallback version files with v1.0.1.
+- [x] Prepare separate internal commit and public annotated-tag messages for v1.0.1.
+- [x] Update canonical installation, Docker, reference, and documentation-status pages for the patch release.
+
+### ✅ Local Docker package version
+
+- [x] Resolve the reviewed source version before Make-driven development and production image builds.
+- [x] Pass `DOC_GEN_BUILD_VERSION` to direct Docker and Docker Compose builds because `.git` is excluded from the build context.
+- [x] Prevent local images from silently installing the legacy setuptools-scm fallback version `0.1.0`.
+- [x] Preserve an explicit `DOC_GEN_BUILD_VERSION=<version>` override for reviewed build validation.
+- [x] Add regression coverage for Docker and Compose build-argument propagation.
+- [x] Rebuild `doc-gen-prod:latest` and verify both `Doc Gen: 1.0.1` and banner version `v1.0.1` from the resulting image.
+
+### ⏳ Final release actions
+
+- [ ] Re-run the complete Python 3.9 and 3.14 test matrix, formatting, lint, pre-commit, documentation, package, and container checks against the exact release commit.
+- [ ] Review the v1.0.1 commit message, annotated tag message, generated changelog, and registry destinations.
+- [ ] Commit, create the `v1.0.1` tag, publish, and verify provider releases only with explicit release approval.
+
+### Notes
+
+- v1.0.1 does not change generation output, profiles, smart mode, configuration, scanning, rendering, or persistence boundaries.
+- Local Make builds use `app/doc_gen/__version__.py` as the reviewed version source; hosted release workflows continue deriving their package version from the validated release tag.
+- No Git commit, tag, push, package publication, image publication, or provider release was performed while preparing this entry.

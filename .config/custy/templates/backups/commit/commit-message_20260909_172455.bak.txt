@@ -1,0 +1,33 @@
+fix(cli): release Doc Gen v1.0.1
+
+Make bare root invocation follow Doc Gen's normal presentation callback so the
+banner and help behave consistently.
+
+### Fixed
+
+- Route `doc-gen` without a subcommand through the callback instead of Typer's
+  automatic no-argument help shortcut.
+- Show the banner before root help by default and preserve explicit
+  `--no-banner` suppression.
+- Return a successful exit status after displaying bare root help.
+- Keep `doc-gen --help`, `doc-gen --version`, and all structure command
+  behavior unchanged.
+- Synchronize both source fallback version files at `1.0.1`.
+- Pass the reviewed source version into Make-driven Docker and Compose builds
+  so setuptools-scm cannot fall back to the legacy `0.1.0` package version
+  when `.git` is excluded from the build context.
+- Invalidate stale package-install layers when the reviewed build version
+  changes while retaining an explicit `DOC_GEN_BUILD_VERSION` override.
+
+### Tests and documentation
+
+- Add regression coverage for bare invocation with and without the banner.
+- Add workflow regression coverage for local Docker build-version injection.
+- Update installation, Docker, reference, and documentation-baseline guidance
+  for v1.0.1.
+
+Tag: v1.0.1
+Previous version: v1.0.0
+Changelog: generated separately
+
+Tags: #fix #cli #banner #docker #packaging #documentation #release

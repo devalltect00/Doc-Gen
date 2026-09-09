@@ -12,7 +12,7 @@ has `read_package_registry` access:
 ```bash
 python -m pip install \
   --index-url "https://<deploy-token-user>:<deploy-token>@gitlab.com/api/v4/projects/<project-id>/packages/pypi/simple" \
-  "doc-gen==1.0.0"
+  "doc-gen==1.0.1"
 ```
 
 ## Step 2: Verify Installation

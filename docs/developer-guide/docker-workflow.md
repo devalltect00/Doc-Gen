@@ -21,6 +21,12 @@ Docker provides:
 
 The project builds multiple Docker images:
 
+Make resolves the reviewed version from `app/doc_gen/__version__.py` before a
+local development or production build and supplies it to setuptools-scm as a
+Docker build argument. This is required because `.git` is intentionally absent
+from the Docker build context. You can override the value for a reviewed build,
+for example `make c-build-prod DOC_GEN_BUILD_VERSION=1.0.1`.
+
 | Image                 | Description       |
 | --------------------- | ----------------- |
 | `doc-gen:latest`      | Base image        |
@@ -176,7 +182,7 @@ and published utility image commands.
 ### Published release tags
 
 Stable production releases publish four coordinated references to the same
-image: exact `v1.0.0`, minor `v1.0`, major `v1`, and `latest`. Pin CI and
+image: exact `v1.0.1`, minor `v1.0`, major `v1`, and `latest`. Pin CI and
 reproducible automation to the immutable exact tag. The other aliases move only
 when a compatible stable release is published. Prereleases such as
 `v1.0.0-rc.1` publish only their exact tag.

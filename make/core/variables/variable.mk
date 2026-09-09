@@ -87,6 +87,14 @@ DOCKER ?= docker
 DOCKER_COMPOSE ?= $(DOCKER) compose
 DOCKER_TAG ?= latest
 DOCKER_REPOSITORY ?= doc-gen
+
+# Docker does not receive .git because repository metadata is excluded from
+# the build context. Resolve the reviewed source version on the host and pass
+# it explicitly so local images do not fall back to setuptools-scm's 0.1.0.
+DETECTED_DOC_GEN_BUILD_VERSION = $(strip $(shell "$(PYTHON)" -c "from doc_gen.__version__ import __version__; print(__version__)" 2>$(NULL_DEVICE)))
+DOC_GEN_BUILD_VERSION ?= $(or $(DETECTED_DOC_GEN_BUILD_VERSION),0.1.0)
+DOCKER_BUILD_VERSION_ARG = --build-arg DOC_GEN_BUILD_VERSION=$(DOC_GEN_BUILD_VERSION)
+
 DOCKER_IMAGE_BASE ?= $(DOCKER_REPOSITORY)-base:$(DOCKER_TAG)
 DOCKER_IMAGE_DEV ?= $(DOCKER_REPOSITORY)-dev:$(DOCKER_TAG)
 DOCKER_IMAGE_PROD ?= $(DOCKER_REPOSITORY)-prod:$(DOCKER_TAG)

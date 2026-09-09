@@ -303,7 +303,6 @@ Common directories include:
 │   ├── test_developer_workflows.py
 │   └── test_dry_run.py
 ├── venv/ ... (collapsed)
-├── venv_3_14/ ... (collapsed)
 ├── .coverage
 ├── .dockerignore
 ├── .gitignore

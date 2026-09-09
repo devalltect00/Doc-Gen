@@ -20,7 +20,6 @@ typer.rich_utils._console = console
 app = typer.Typer(
     name="doc-gen",
     help="Generate and analyze project documentation.",
-    no_args_is_help=True,
     add_help_option=False,
     add_completion=True,
     rich_markup_mode="rich",

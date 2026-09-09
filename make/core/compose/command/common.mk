@@ -11,15 +11,15 @@ c-build-base: docker-check
 	$(COMPOSE_BASE) build base
 
 c-build-dev: c-build-base
-	$(COMPOSE_DEV) build $(SERVICE_APP)
+	$(COMPOSE_DEV) build $(DOCKER_BUILD_VERSION_ARG) $(SERVICE_APP)
 
 c-build-prod: c-build-base
-	$(COMPOSE_PROD) build $(SERVICE_APP)
+	$(COMPOSE_PROD) build $(DOCKER_BUILD_VERSION_ARG) $(SERVICE_APP)
 
 c-build-all: docker-check
 	$(COMPOSE_BASE) build base
-	$(COMPOSE_DEV) build $(SERVICE_APP)
-	$(COMPOSE_PROD) build $(SERVICE_APP)
+	$(COMPOSE_DEV) build $(DOCKER_BUILD_VERSION_ARG) $(SERVICE_APP)
+	$(COMPOSE_PROD) build $(DOCKER_BUILD_VERSION_ARG) $(SERVICE_APP)
 
 .PHONY: c-up c-up-build c-up-detached c-down c-down-clean c-logs
 c-up: docker-check

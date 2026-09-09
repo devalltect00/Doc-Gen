@@ -19,6 +19,40 @@ from doc_gen.cli.utils import banner
 runner = CliRunner()
 
 
+def test_main_without_arguments_shows_banner_and_help(monkeypatch):
+    """Bare invocation should run the callback before showing successful help."""
+
+    calls = {"count": 0}
+
+    def fake_show():
+        calls["count"] += 1
+
+    monkeypatch.setattr(banner, "show", fake_show)
+
+    result = runner.invoke(app, [])
+
+    assert result.exit_code == 0
+    assert "Generate and analyze project documentation" in result.output
+    assert calls["count"] == 1
+
+
+def test_main_without_arguments_honors_no_banner(monkeypatch):
+    """Bare help should respect the explicit banner suppression flag."""
+
+    calls = {"count": 0}
+
+    def fake_show():
+        calls["count"] += 1
+
+    monkeypatch.setattr(banner, "show", fake_show)
+
+    result = runner.invoke(app, ["--no-banner"])
+
+    assert result.exit_code == 0
+    assert "Generate and analyze project documentation" in result.output
+    assert calls["count"] == 0
+
+
 def test_main_help_shows_banner_by_default(monkeypatch):
     calls = {"count": 0}
 

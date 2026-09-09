@@ -47,6 +47,23 @@ def test_dockerfile_validates_runtime_and_accepts_an_explicit_version() -> None:
     assert 'RUN python -c "from doc_gen.cli.main import app"' in dockerfile
 
 
+def test_local_image_builds_receive_the_reviewed_source_version() -> None:
+    """Make-driven images must not use setuptools-scm's context fallback."""
+
+    variables = _read("make/core/variables/variable.mk")
+    docker = _read("make/core/docker/command/common.mk")
+    compose = _read("make/core/compose/command/common.mk")
+
+    assert "from doc_gen.__version__ import __version__" in variables
+    assert "DOC_GEN_BUILD_VERSION ?=" in variables
+    assert (
+        "DOCKER_BUILD_VERSION_ARG = --build-arg "
+        "DOC_GEN_BUILD_VERSION=$(DOC_GEN_BUILD_VERSION)"
+    ) in variables
+    assert docker.count("$(DOCKER_BUILD_VERSION_ARG)") == 4
+    assert compose.count("$(DOCKER_BUILD_VERSION_ARG)") == 4
+
+
 def test_published_images_receive_the_scm_package_version() -> None:
     """Published development and production images should retain package versions."""
 
