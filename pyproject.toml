@@ -325,7 +325,15 @@ target-version = ["py39"]
 # explicitly by pre-commit, an editor, or a developer command.
 force-exclude = '''
 (
-    /old/
+    /dev_venv/
+  | /prod_venv/
+  | /venv_dev/
+  | /venv_prod/
+  | /publish_venv/
+  | /venv_publish/
+  | /other_venv/
+  | /venv_other/
+  | /old/
   | /example_before/
   | /config_before/
   | \.deprecated\.py$
@@ -354,6 +362,14 @@ exclude = [
     ".git",
     ".venv",
     "venv",
+    "dev_venv",
+    "prod_venv",
+    "venv_dev",
+    "venv_prod",
+    "publish_venv",
+    "venv_publish",
+    "other_venv",
+    "venv_other",
     "__pycache__",
     "build",
     "dist",

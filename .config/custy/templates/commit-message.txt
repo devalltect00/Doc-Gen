@@ -1,25 +1,27 @@
-docs(readme): improve project presentation and metadata
+chore(dev): checkpoint isolate named virtual environments
 
-Polish the Doc Gen README so its project identity, release information, and
-supporting resources are easier to scan and consistent with the wider
-Devalltect project family.
+Keep the supported dedicated development and production Python environment
+naming conventions out of Doc Gen's repository tooling and generated
+project-structure discovery.
 
-### 📚 README improvements
+### 🧰 Development environment isolation
 
-- Add a clearer product title and consistent icons to the remaining sections.
-- Add concise metadata for Doc Gen v1.0.1, Python compatibility, packaging,
-  distribution channels, documentation, license, and maintainer.
-- Link badges to their relevant project resources and upstream tools where the
-  destination is unambiguous.
-- Preserve the existing installation, usage, dry-run, configuration, Docker,
-  security, and contributor guidance.
+- Ignore root-level `dev_venv/`, `prod_venv/`, `venv_dev/`, `venv_prod/`,
+  `publish_venv/`, `venv_publish/`, `other_venv/`, and `venv_other/`
+  directories in Git.
+- Exclude all eight names from Docker, Prettier, Black, and Ruff inputs.
+- Teach the Python project ignore loader to omit all eight directory names.
+- Add focused ignore-loader and developer-workflow regression coverage.
 
-### ✅ Validation
+### ✅ Validation intent
 
-- Pass the repository pre-commit hooks for the updated README.
-- Pass Git whitespace and patch-integrity validation.
+- Confirm both environments remain absent from generated project structures.
+- Confirm similarly named ordinary directories are not excluded accidentally.
+- Run the focused tests and repository quality checks.
+
+Checkpoint: untagged development maintenance
 
 🔖 **Tags**:
-- Type: `#docs`, `#maintenance`
-- Scope: `#readme`, `#metadata`, `#badges`, `#presentation`
-- Product: `#doc-gen`, `#developer-tool`
+- Type: `#chore`, `#maintenance`
+- Scope: `#virtual-environment`, `#project-discovery`, `#dockerignore`, `#quality`
+- Product: `#doc-gen`, `#developer-experience`

@@ -1,0 +1,27 @@
+chore(dev): checkpoint isolate named virtual environments
+
+Keep the supported dedicated development and production Python environment
+naming conventions out of Doc Gen's repository tooling and generated
+project-structure discovery.
+
+### 🧰 Development environment isolation
+
+- Ignore root-level `dev_venv/`, `prod_venv/`, `venv_dev/`, `venv_prod/`,
+  `publish_venv/`, `venv_publish/`, `other_venv/`, and `venv_other/`
+  directories in Git.
+- Exclude all eight names from Docker, Prettier, Black, and Ruff inputs.
+- Teach the Python project ignore loader to omit all eight directory names.
+- Add focused ignore-loader and developer-workflow regression coverage.
+
+### ✅ Validation intent
+
+- Confirm both environments remain absent from generated project structures.
+- Confirm similarly named ordinary directories are not excluded accidentally.
+- Run the focused tests and repository quality checks.
+
+Checkpoint: untagged development maintenance
+
+🔖 **Tags**:
+- Type: `#chore`, `#maintenance`
+- Scope: `#virtual-environment`, `#project-discovery`, `#dockerignore`, `#quality`
+- Product: `#doc-gen`, `#developer-experience`
