@@ -1,24 +1,24 @@
-# 📦 Doc Gen
+# 📦 Doc Gen — Repository Structure Documentation CLI
 
 <!-- ![Python](https://img.shields.io/pypi/pyversions/doc-gen) -->
 <!-- ![License](https://img.shields.io/badge/license-MIT-green) -->
 
-![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
-![Versioning](https://img.shields.io/badge/versioning-SemVer-3F4551.svg)
-![Tag](https://img.shields.io/github/v/tag/devalltect00/Doc-Gen)
-![License](https://img.shields.io/github/license/devalltect00/Doc-Gen)
-![Build](https://img.shields.io/badge/CI-GitHub%20Actions-success)
+[![Python](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/)
+[![Versioning](https://img.shields.io/badge/versioning-SemVer-3F4551.svg)](https://semver.org/)
+[![Tag](https://img.shields.io/github/v/tag/devalltect00/Doc-Gen)](https://github.com/devalltect00/Doc-Gen/tags)
+[![License](https://img.shields.io/github/license/devalltect00/Doc-Gen)](LICENSE)
+[![Build](https://img.shields.io/badge/CI-GitHub%20Actions-success)](https://github.com/devalltect00/Doc-Gen/actions)
 ![Coverage](https://img.shields.io/badge/coverage-tracked-success)
-![Ruff](https://img.shields.io/badge/lint-ruff-purple.svg)
-![Black](https://img.shields.io/badge/code%20style-black-000000.svg)
-![Pytest](https://img.shields.io/badge/tested%20with-pytest-0A9EDC.svg)
-![Documentation](https://img.shields.io/badge/docs-online-success.svg)
-![MkDocs](https://img.shields.io/badge/docs-MkDocs-success.svg)
-![Docker](https://img.shields.io/badge/docker-supported-2496ED?logo=docker&logoColor=white)
-![Docker Release](https://img.shields.io/badge/docker-release%20images-2496ED?logo=docker&logoColor=white)
-![Docker Commit](https://img.shields.io/badge/docker-commit%2Fsha%20images-1D63ED?logo=docker&logoColor=white)
-![Release](https://img.shields.io/github/v/release/devalltect00/Doc-Gen)
-![Developer Tool](https://img.shields.io/badge/category-developer--tool-orange.svg)
+[![Ruff](https://img.shields.io/badge/lint-ruff-purple.svg)](https://docs.astral.sh/ruff/)
+[![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://black.readthedocs.io/)
+[![Pytest](https://img.shields.io/badge/tested%20with-pytest-0A9EDC.svg)](https://docs.pytest.org/)
+[![Documentation](https://img.shields.io/badge/docs-online-success.svg)](https://devalltect00.github.io/devalltect-docs/docs/doc-gen)
+[![MkDocs](https://img.shields.io/badge/docs-MkDocs-success.svg)](https://www.mkdocs.org/)
+[![Docker](https://img.shields.io/badge/docker-supported-2496ED?logo=docker&logoColor=white)](docs/developer-guide/docker-workflow.md)
+[![Docker Release](https://img.shields.io/badge/docker-release%20images-2496ED?logo=docker&logoColor=white)](https://github.com/devalltect00/Doc-Gen/pkgs/container/doc-gen)
+[![Docker Commit](https://img.shields.io/badge/docker-commit%2Fsha%20images-1D63ED?logo=docker&logoColor=white)](https://github.com/devalltect00/Doc-Gen/pkgs/container/doc-gen)
+[![Release](https://img.shields.io/github/v/release/devalltect00/Doc-Gen)](https://github.com/devalltect00/Doc-Gen/releases)
+[![Developer Tool](https://img.shields.io/badge/category-developer--tool-orange.svg)](https://github.com/devalltect00/Doc-Gen)
 
 Doc Gen generates Markdown project trees, prints directory structures, and
 analyzes repository layout. Use profiles, smart mode, and explicit output
@@ -26,6 +26,24 @@ paths to tailor the result.
 
 The v0.1.0 project was named `print_project_structure`; the rename to Doc Gen
 is part of v1.0.0-rc.1, not a later stable-only change.
+
+---
+
+## ℹ️ Project Metadata
+
+| Property                     | Value                                         |
+| ---------------------------- | --------------------------------------------- |
+| Project                      | Doc Gen                                       |
+| Current version              | `v1.0.1`                                      |
+| Python package               | `doc-gen`                                     |
+| Package compatibility        | Python 3.9+                                   |
+| Standard development runtime | Python 3.14                                   |
+| CLI framework                | Typer and Rich                                |
+| Version strategy             | SemVer tags and PEP 440 package versions      |
+| Distribution                 | Source, private GitLab PyPI, Docker, and GHCR |
+| Documentation                | Devalltect Docs and repository documentation  |
+| License                      | MIT                                           |
+| Maintainer                   | Devalltect / Rizky Fernandes                  |
 
 ---
 
@@ -43,13 +61,13 @@ is part of v1.0.0-rc.1, not a later stable-only change.
 
 ---
 
-## Installation
+## 📦 Installation
 
 Runtime compatibility is Python 3.9+; the standard development and container
 runtime is Python 3.14. Contributor formatting tools have their own newer
 Python requirements; use Python 3.14 for the complete development environment.
 
-### Install a private GitLab package
+### 🔐 Install a private GitLab package
 
 Choose a version already published in the target project's registry. In an
 activated virtual environment, replace the placeholders:
@@ -70,7 +88,7 @@ if dependencies must stay private.
 See [installation and registry guidance](docs/user-guide/installation-methods.md) for authentication,
 other installation methods, and registry setup.
 
-### Install from a source checkout
+### 🧑‍💻 Install from a source checkout
 
 Create and activate a virtual environment, then install from the source root:
 
@@ -211,7 +229,7 @@ For the details, see full structure in [`project_structure.md`](docs/project_str
 
 ---
 
-## Repository metadata helper (maintainers)
+## ⚙️ Repository Metadata Helper (Maintainers)
 
 The optional [metadata sync script](scripts/repository/src/sync_metadata.py)
 is source-checkout tooling, not an installed application command. Run it from

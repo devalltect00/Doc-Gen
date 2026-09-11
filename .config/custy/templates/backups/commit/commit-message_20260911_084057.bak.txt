@@ -1,0 +1,25 @@
+docs(readme): improve project presentation and metadata
+
+Polish the Doc Gen README so its project identity, release information, and
+supporting resources are easier to scan and consistent with the wider
+Devalltect project family.
+
+### 📚 README improvements
+
+- Add a clearer product title and consistent icons to the remaining sections.
+- Add concise metadata for Doc Gen v1.0.1, Python compatibility, packaging,
+  distribution channels, documentation, license, and maintainer.
+- Link badges to their relevant project resources and upstream tools where the
+  destination is unambiguous.
+- Preserve the existing installation, usage, dry-run, configuration, Docker,
+  security, and contributor guidance.
+
+### ✅ Validation
+
+- Pass the repository pre-commit hooks for the updated README.
+- Pass Git whitespace and patch-integrity validation.
+
+🔖 **Tags**:
+- Type: `#docs`, `#maintenance`
+- Scope: `#readme`, `#metadata`, `#badges`, `#presentation`
+- Product: `#doc-gen`, `#developer-tool`
