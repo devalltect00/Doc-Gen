@@ -1,5 +1,9 @@
 # 📦 Doc Gen — Repository Structure Documentation CLI
 
+<p align="center">
+  <img src="docs/assets/doc-gen.png" alt="Doc Gen command-line interface" width="547">
+</p>
+
 <!-- ![Python](https://img.shields.io/pypi/pyversions/doc-gen) -->
 <!-- ![License](https://img.shields.io/badge/license-MIT-green) -->
 
@@ -294,8 +298,8 @@ See [`CHANGELOG.md`](CHANGELOG.md)
 
 See [LICENSE](LICENSE) for the licensing terms.
 
-📧 Contact: `rizkypffdev37@gmail.com`
+📧 Contact: `devalltect00@gmail.com`
 
 ---
 
-_Handcrafted with ❤️ by Devalltect / Rizky Fernandes_
+_Crafted with ❤️ by Devalltect / Rizky Fernandes_

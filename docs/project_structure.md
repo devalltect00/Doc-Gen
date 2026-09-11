@@ -140,6 +140,8 @@ Common directories include:
 │   │   ├── design-patterns.md
 │   │   ├── diagrams.md
 │   │   └── workflow.md
+│   ├── assets
+│   │   └── doc-gen.png
 │   ├── developer-guide
 │   │   ├── blackbox
 │   │   │   └── ai-development-workflow.md
