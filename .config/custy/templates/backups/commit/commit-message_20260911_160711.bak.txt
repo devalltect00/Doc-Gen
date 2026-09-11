@@ -1,0 +1,32 @@
+chore(release): prepare Doc Gen v1.0.2
+
+Consolidate the reviewed repository-maintenance and presentation checkpoints
+since v1.0.1 into the next patch release.
+
+### Maintenance
+
+- Exclude supported named virtual-environment directories from project-tree
+  discovery, version control, container contexts, and quality-tool inputs.
+- Add regression coverage for ignore behavior and developer-tooling rules.
+- Keep similarly named ordinary project directories discoverable.
+
+### Documentation and metadata
+
+- Refine README metadata, badges, and project presentation.
+- Add a locally stored CLI preview that renders on GitHub and GitLab.
+- Standardize the public project contact in README and package metadata.
+- Align source and package fallback versions, the stable package classifier,
+  and active installation and Docker references with v1.0.2.
+- Synchronize the generated project-structure reference.
+
+### Compatibility
+
+- Preserve all commands, configuration, dry-run behavior, and Python 3.9+
+  package compatibility.
+
+Tag: v1.0.2
+Previous version: v1.0.1
+Release type: patch
+Changelog: generated separately
+
+Tags: #release #maintenance #discovery #readme #metadata #doc-gen

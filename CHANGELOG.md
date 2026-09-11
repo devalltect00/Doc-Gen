@@ -14,20 +14,31 @@ Unreleased
 
 **Summary**
 
-Keep the supported dedicated development and production Python environment
-naming conventions out of Doc Gen's repository tooling and generated
-project-structure discovery.
+Consolidate the reviewed repository-maintenance and presentation checkpoints
+since v1.0.1 into the next patch release.
 
-### 🧠 Improvements
+### Readme Presentation
 
-#### Readme
+#### Project
 
-- Add a clearer product title and consistent icons to the remaining sections.
-- Add concise metadata for Doc Gen v1.0.1, Python compatibility, packaging,
-- Link badges to their relevant project resources and upstream tools where the
-- Preserve the existing installation, usage, dry-run, configuration, Docker,
+- Add the Doc Gen CLI preview near the top of the README.
+- Store the preview locally so it renders independently on GitHub and GitLab.
+- Preserve the existing badges, project overview, installation, and usage
+
+### Official Project Contact
+
+#### Project
+
+- Replace the previous contact address with the official Devalltect address in
+- Update both author and maintainer email metadata for future Python package
+- Leave existing releases, package artifacts, tags, and Git history unchanged.
 
 ### Validation
+
+#### Project
+
+- Confirm the previous email has no current working-tree references.
+- Validate the project metadata, README asset path, formatting, and Git diff.
 
 #### Readme
 
@@ -51,9 +62,30 @@ project-structure discovery.
 - Confirm similarly named ordinary directories are not excluded accidentally.
 - Run the focused tests and repository quality checks.
 
+### 🧠 Improvements
+
+#### Readme
+
+- Add a clearer product title and consistent icons to the remaining sections.
+- Add concise metadata for Doc Gen v1.0.1, Python compatibility, packaging,
+- Link badges to their relevant project resources and upstream tools where the
+- Preserve the existing installation, usage, dry-run, configuration, Docker,
+
+### 📚 Documentation
+
+- Refine README metadata, badges, and project presentation.
+- Add a locally stored CLI preview that renders on GitHub and GitLab.
+- Standardize the public project contact in README and package metadata.
+- Align source and package fallback versions, the stable package classifier,
+- Synchronize the generated project-structure reference.
+
+### Compatibility
+
+- Preserve all commands, configuration, dry-run behavior, and Python 3.9+
+
 **Tags**
 
-dev • virtual-environment • project-discovery • dockerignore • quality
+docs
 
 ## v1.0.1 (2026-09-09)
 

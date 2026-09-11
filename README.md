@@ -38,7 +38,7 @@ is part of v1.0.0-rc.1, not a later stable-only change.
 | Property                     | Value                                         |
 | ---------------------------- | --------------------------------------------- |
 | Project                      | Doc Gen                                       |
-| Current version              | `v1.0.1`                                      |
+| Current version              | `v1.0.2`                                      |
 | Python package               | `doc-gen`                                     |
 | Package compatibility        | Python 3.9+                                   |
 | Standard development runtime | Python 3.14                                   |

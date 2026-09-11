@@ -4,16 +4,16 @@
 
 # docs/TODO.md
 
-> Cumulative snapshot for **v1.0.0**. Earlier tasks, unfinished work,
+> Cumulative snapshot for **v1.0.2**. Earlier tasks, unfinished work,
 > considerations, ideas, cancelled items, and notes are intentionally retained.
 
-# Doc Gen TODO Tracking History — v1.0.0
+# Doc Gen TODO Tracking History — v1.0.2
 
-> Current status: see the [2026-09-08 post-RC stabilization update](#stabilization-checkpoint-2026-09-08).
+> Current status: see the [v1.0.2 patch-release preparation](#v102-patch-release).
 > Older checkboxes, test counts, plans, and decisions are preserved as recorded;
 > they are historical context, not proof that every current release gate passed.
 
-> Cumulative snapshot for **v1.0.0**. Earlier tasks, unfinished work,
+> Cumulative snapshot for **v1.0.2**. Earlier tasks, unfinished work,
 > considerations, ideas, cancelled items, and notes are intentionally retained.
 
 ---
@@ -643,4 +643,39 @@ Version scope: **v1.0.1 patch release**, following published v1.0.0.
 
 - v1.0.1 does not change generation output, profiles, smart mode, configuration, scanning, rendering, or persistence boundaries.
 - Local Make builds use `app/doc_gen/__version__.py` as the reviewed version source; hosted release workflows continue deriving their package version from the validated release tag.
+- No Git commit, tag, push, package publication, image publication, or provider release was performed while preparing this entry.
+
+---
+
+<a id="v102-patch-release"></a>
+
+## Since v1.0.2
+
+Version scope: **v1.0.2 patch release**, following published v1.0.1.
+
+### ✅ Repository maintenance
+
+- [x] Exclude supported development, production, publishing, and auxiliary virtual-environment directory names from project discovery.
+- [x] Align Git, Docker, formatter, and linter exclusions with the same environment-directory contract.
+- [x] Preserve discovery of similarly named ordinary project directories.
+- [x] Add regression coverage for project discovery and repository-tooling exclusions.
+
+### ✅ Documentation, metadata, and versioning
+
+- [x] Refine README metadata, badges, and project presentation.
+- [x] Add a repository-local CLI preview that renders on GitHub and GitLab.
+- [x] Standardize the public project contact in README and package metadata without recording private contact details in release messages.
+- [x] Synchronize both source fallback files, package fallback metadata, installation examples, Docker guidance, and release messages with v1.0.2.
+- [x] Regenerate the project-structure reference for the maintained repository layout.
+
+### ⏳ Final release actions
+
+- [ ] Re-run the complete Python 3.9 and 3.14 test matrix, formatting, lint, pre-commit, documentation, package, and container checks against the exact release commit.
+- [ ] Review the v1.0.2 commit message, annotated tag message, generated changelog, and registry destinations.
+- [ ] Commit, create the `v1.0.2` tag, publish, and verify provider releases only with explicit release approval.
+
+### Notes
+
+- v1.0.2 preserves commands, configuration, generation behavior, and dry-run guarantees.
+- Historical release sections and versioned TODO snapshots remain unchanged.
 - No Git commit, tag, push, package publication, image publication, or provider release was performed while preparing this entry.

@@ -14,7 +14,7 @@ token that has `read_package_registry` access:
 ```bash
 python -m pip install \
   --index-url "https://<deploy-token-user>:<deploy-token>@gitlab.com/api/v4/projects/<project-id>/packages/pypi/simple" \
-  "doc-gen==1.0.1"
+  "doc-gen==1.0.2"
 ```
 
 ### 2. Generate
@@ -89,7 +89,7 @@ Add to your pre-commit workflow:
 ```bash
 # .pre-commit-config.yaml
 - repo: https://github.com/devalltect00/doc-gen
-  rev: v1.0.1
+  rev: v1.0.2
   hooks:
     - id: generate-structure
 ```
@@ -102,7 +102,7 @@ Automate in CI/CD:
 # .gitlab-ci.yml or similar
 generate-docs:
   script:
-    - python -m pip install --index-url "https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/pypi/simple" "doc-gen==1.0.1"
+    - python -m pip install --index-url "https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/pypi/simple" "doc-gen==1.0.2"
     - doc-gen structure generate
     - git add PROJECT_STRUCTURE.md
     - git commit -m "Update project structure" || true
