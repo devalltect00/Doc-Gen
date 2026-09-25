@@ -123,11 +123,23 @@ show_files = true
 # Override automatic project detection.
 #
 # Examples:
+#     generic
 #     python
 #     django
+#     flask
+#     fastapi
 #     nodejs
 #     reactjs
 #     nextjs
+#     google-apps-script
+#     php
+#     laravel
+#     go
+#     gin
+#
+# Leave unset to combine automatically detected ecosystem, framework, and tool
+# metadata. A manual value selects the primary type while safe secondary
+# signals may still enrich generated documentation and ignore behavior.
 #
 # # project_type = ""   # ignore this
 

@@ -10,10 +10,11 @@ DocGen is a CLI tool that generates project structure documentation. It helps de
 
 Key features:
 
-- Generate PROJECT_STRUCTURE.md automatically
+- Generate `docs/project_structure.md` by default
 - Support multiple profiles (minimal, default, detailed)
 - Smart mode for automatic optimization
-- Configurable via .projectstructure.toml
+- Configurable via `.config/doc_gen/config.toml`
+- Compose project-aware metadata from safe ecosystem and framework signals
 
 ---
 

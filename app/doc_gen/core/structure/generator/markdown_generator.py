@@ -31,6 +31,8 @@ from doc_gen.core.structure.generator.renderers.root_files_renderer import (
 from doc_gen.core.structure.generator.writers.markdown_writer import (
     MarkdownWriter,
 )
+from doc_gen.core.structure.metadata.registry import MetadataRegistry
+from doc_gen.core.structure.scanner.models import ProjectFingerprint
 from doc_gen.core.structure.scanner.scanner_service import (
     ScannerService,
 )
@@ -101,11 +103,21 @@ class MarkdownGenerator:
         directories = self.scanner_service.detect_top_directories()
 
         project_type = self.scanner_service.project_type
+        fingerprint = getattr(
+            self.scanner_service,
+            "fingerprint",
+            ProjectFingerprint(primary_type=project_type),
+        )
+        catalog = MetadataRegistry().resolve(fingerprint)
 
         sections = [
             "# Project Structure",
             "",
-            self.repository_overview_renderer.render(),
+            self.repository_overview_renderer.render(
+                directories=directories,
+                fingerprint=fingerprint,
+                catalog=catalog,
+            ),
             "",
             "---",
             "",
@@ -118,12 +130,14 @@ class MarkdownGenerator:
             "",
             self.root_files_renderer.render(
                 root_directory=self.config.target_directory,
+                catalog=catalog,
             ),
             "",
             "---",
             "",
             self.directory_details_renderer.render(
                 directories=directories,
+                catalog=catalog,
             ),
             "",
             "---",
@@ -133,7 +147,7 @@ class MarkdownGenerator:
         ]
 
         return MarkdownDocument(
-            content="\n".join(sections),
+            content=self.writer.normalize_content("\n".join(sections)),
         )
 
     def save(

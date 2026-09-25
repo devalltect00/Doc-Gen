@@ -1,32 +1,57 @@
-chore(release): prepare Doc Gen v1.0.2
+feat(structure): add project-aware documentation for mixed stacks
 
-Consolidate the reviewed repository-maintenance and presentation checkpoints
-since v1.0.1 into the next patch release.
+Expand Doc Gen from a small fixed project-type catalog into a composable
+detection and metadata system while preserving the existing CLI contract.
 
-### Maintenance
+### Project detection
 
-- Exclude supported named virtual-environment directories from project-tree
-  discovery, version control, container contexts, and quality-tool inputs.
-- Add regression coverage for ignore behavior and developer-tooling rules.
-- Keep similarly named ordinary project directories discoverable.
+- Keep one compatible primary type and add ecosystem, framework, and tool
+  signals for mixed-stack repositories.
+- Detect Python, Django, Flask, FastAPI, Node.js, React, Next.js, Google Apps
+  Script, PHP, Laravel, Go, and Gin from safe repository markers.
+- Recognize TypeScript and common JavaScript package managers as secondary
+  context.
+- Honor manual project-type overrides and fix the public auto, Flask, and
+  FastAPI resolution paths.
 
-### Documentation and metadata
+### Metadata and safety
 
-- Refine README metadata, badges, and project presentation.
-- Add a locally stored CLI preview that renders on GitHub and GitLab.
-- Standardize the public project contact in README and package metadata.
-- Align source and package fallback versions, the stable package classifier,
-  and active installation and Docker references with v1.0.2.
-- Synchronize the generated project-structure reference.
+- Merge common, ecosystem, and framework metadata in deterministic order.
+- Render descriptions only for recognized files and directories present in the
+  selected repository.
+- Apply detected ecosystem ignore rules before scanning.
+- Exclude local clasp configuration and environment files that may contain
+  identifiers or credentials.
+- Align uninitialized projects with the canonical lowercase
+  `docs/project_structure.md` output while retaining read compatibility for the
+  retired configuration filename.
+- Keep common metadata ecosystem-neutral and contribute Python tooling only to
+  repositories detected as Python projects.
+- Normalize generated Markdown to stable UTF-8/LF output with no trailing
+  whitespace, repeated blank lines, or missing final newline.
+- Replace formatter-sensitive file tables with recognized-file lists that
+  remain readable for both root and nested framework files.
+
+### Quality and documentation
+
+- Add synthetic regression coverage for supported frameworks, mixed signals,
+  override behavior, metadata composition, and sensitive-file boundaries.
+- Document supported project types, detection rules, metadata precedence, and
+  extension guidance.
+- Synchronize configuration comments, architecture guidance, active install
+  examples, and fallback versions with v1.1.0.
+- Exclude generated Python bytecode from source and wheel distributions.
+- Cover Markdown normalization, writer persistence, formatter-stable rendering,
+  and ecosystem-specific metadata boundaries with regression tests.
 
 ### Compatibility
 
-- Preserve all commands, configuration, dry-run behavior, and Python 3.9+
-  package compatibility.
+- Preserve command names, profiles, configuration precedence, explicit output
+  selection, dry-run behavior, and Python 3.9+ package compatibility.
 
-Tag: v1.0.2
-Previous version: v1.0.1
-Release type: patch
+Tag: v1.1.0
+Previous version: v1.0.2
+Release type: minor
 Changelog: generated separately
 
-Tags: #release #maintenance #discovery #readme #metadata #doc-gen
+Tags: #feature #project-detection #metadata #documentation #doc-gen

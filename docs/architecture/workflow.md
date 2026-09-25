@@ -48,6 +48,10 @@ doc-gen init
 ```text
 doc-gen structure generate
     │
+    ├── Read safe repository markers
+    ├── Build a composable project fingerprint
+    ├── Resolve common + ecosystem + framework metadata
+    ├── Build project-aware ignore rules
     ├── Scan target directory
     ├── Build directory tree
     ├── Apply profiles (minimal/default/detailed)
@@ -55,8 +59,15 @@ doc-gen structure generate
     │
     └── Generate markdown
         │
-        └── Write PROJECT_STRUCTURE.md
+        ├── Normalize whitespace and line endings
+        └── Write the configured output path
+            └── docs/project_structure.md by default
 ```
+
+The Markdown writer owns persistence normalization. Renderers remain focused on
+content, while the writer guarantees UTF-8, LF line endings, no trailing
+whitespace, no repeated blank lines, and one final newline. Dry-run renders the
+same normalized document in memory without creating the output path.
 
 ---
 
@@ -103,7 +114,7 @@ CLI Options
 Environment Variables
     │
     ▼
-Config File (.projectstructure.toml)
+Config File (.config/doc_gen/config.toml)
     │
     ▼
 Default Values
@@ -115,10 +126,11 @@ Default Values
 
 The architecture supports extensions through:
 
-1. **Custom Profiles** - Extend the profile system
-2. **Custom Renderers** - Add new output formats
-3. **Custom Scanners** - Support new file types
-4. **Custom Analyzers** - Add new analysis methods
+1. **Detection signals** - Add safe project markers without changing commands
+2. **Metadata catalogs** - Extend ecosystem or framework documentation
+3. **Custom profiles** - Extend output-depth behavior
+4. **Custom renderers** - Add new output formats
+5. **Custom analyzers** - Add new analysis methods
 
 ---
 

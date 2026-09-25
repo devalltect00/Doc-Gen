@@ -59,7 +59,7 @@ def generate(
     dry_run: DryRunOption = None,
 ):
     """
-    Generate PROJECT_STRUCTURE.md.
+    Generate Markdown project-structure documentation.
 
     Examples
     --------
@@ -79,7 +79,7 @@ def generate(
     Generate with custom output:
 
         doc-gen structure generate \
-            --output docs/PROJECT_STRUCTURE.md
+            --output docs/project_structure.md
 
     Generate using smart mode:
 

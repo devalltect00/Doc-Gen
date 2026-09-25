@@ -13,11 +13,12 @@ project structure. Replace the placeholders with a deploy token that has
 ```bash
 python -m pip install \
   --index-url "https://<deploy-token-user>:<deploy-token>@gitlab.com/api/v4/projects/<project-id>/packages/pypi/simple" \
-  "doc-gen==1.0.2"
+  "doc-gen==1.1.0"
 doc-gen structure generate
 ```
 
-This creates a `PROJECT_STRUCTURE.md` file in your current directory.
+This creates `docs/project_structure.md` unless configuration or `--output`
+selects another path.
 
 ## Basic Usage
 
@@ -84,10 +85,10 @@ doc-gen structure generate --max-depth 3
 
 ## Configuration File
 
-Create a `.projectstructure.toml` file in your project root:
+Run `doc-gen init`, then edit `.config/doc_gen/config.toml`:
 
 ```toml
-[tool.doc-gen]
+[tool.doc-gen.cli.structure]
 profile = "default"
 max_depth = 3
 show_files = true

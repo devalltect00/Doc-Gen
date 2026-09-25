@@ -27,7 +27,7 @@ OutputFileOption = Annotated[
         Output markdown file.
 
         Example:
-            docs/PROJECT_STRUCTURE.md
+            docs/project_structure.md
         """,
         autocompletion=completion_output_choices,
     ),

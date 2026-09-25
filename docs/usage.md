@@ -65,7 +65,8 @@ Supported options:
 - `--profile [minimal|default|detailed]`
 - `--smart / --no-smart`
 - `--max-depth INTEGER`
-- `--show-files / --no-files`
+- `--show-files / --hide-files`
+- `--project-type [generic|python|django|flask|fastapi|nodejs|reactjs|nextjs|google-apps-script|php|laravel|go|gin]`
 - `--output FILE`
 - `--dry-run / --no-dry-run`
 
@@ -77,9 +78,14 @@ doc-gen structure generate --profile minimal
 doc-gen structure generate --smart
 doc-gen structure generate --max-depth 2
 doc-gen structure generate --show-files
+doc-gen structure generate --project-type laravel
 doc-gen structure generate --output my-docs.md
 doc-gen structure generate --output my-docs.md --dry-run
 ```
+
+Leave `--project-type` unset for automatic composable detection. The generated
+overview can combine ecosystem, framework, and tool metadata for mixed-stack
+repositories. See [project detection](project-detection.md).
 
 ### `structure print` - Print to Console
 
@@ -209,7 +215,7 @@ doc-gen structure generate --dry-run
    doc-gen structure generate --help
    ```
 4. Confirm config exists:
-   - `.projectstructure.toml`
+   - `.config/doc_gen/config.toml`
 
 ---
 

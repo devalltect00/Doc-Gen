@@ -138,7 +138,7 @@ class StructureGenerateMain:
                 "Dry run completed; no files were modified.\n\n"
                 f"Would write: {args.output_file}"
                 if args.dry_run
-                else "PROJECT_STRUCTURE.md generated successfully.\n\n"
+                else "Project structure documentation generated successfully.\n\n"
                 f"Output: {args.output_file}"
             )
             console.print(

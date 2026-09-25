@@ -14,7 +14,7 @@ token that has `read_package_registry` access:
 ```bash
 python -m pip install \
   --index-url "https://<deploy-token-user>:<deploy-token>@gitlab.com/api/v4/projects/<project-id>/packages/pypi/simple" \
-  "doc-gen==1.0.2"
+  "doc-gen==1.1.0"
 ```
 
 ### 2. Generate
@@ -27,7 +27,7 @@ doc-gen structure generate
 
 ### 3. Review
 
-Review the generated PROJECT_STRUCTURE.md:
+Review the generated `docs/project_structure.md`:
 
 - Open the file
 - Check the structure looks correct
@@ -50,7 +50,7 @@ doc-gen structure generate --smart
 Commit the generated file to version control:
 
 ```bash
-git add PROJECT_STRUCTURE.md
+git add docs/project_structure.md
 git commit -m "Add project structure documentation"
 ```
 
@@ -89,7 +89,7 @@ Add to your pre-commit workflow:
 ```bash
 # .pre-commit-config.yaml
 - repo: https://github.com/devalltect00/doc-gen
-  rev: v1.0.2
+  rev: v1.1.0
   hooks:
     - id: generate-structure
 ```
@@ -102,9 +102,9 @@ Automate in CI/CD:
 # .gitlab-ci.yml or similar
 generate-docs:
   script:
-    - python -m pip install --index-url "https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/pypi/simple" "doc-gen==1.0.2"
+    - python -m pip install --index-url "https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/pypi/simple" "doc-gen==1.1.0"
     - doc-gen structure generate
-    - git add PROJECT_STRUCTURE.md
+    - git add docs/project_structure.md
     - git commit -m "Update project structure" || true
 ```
 
@@ -122,7 +122,8 @@ pip uninstall doc-gen
 
 ### Remove Configuration
 
-Delete .projectstructure.toml if created.
+Delete `.config/doc_gen/` only when its user-managed project configuration is
+no longer needed.
 
 ---
 

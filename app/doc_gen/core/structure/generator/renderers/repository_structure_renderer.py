@@ -25,7 +25,7 @@ class RepositoryStructureRenderer:
         """
 
         lines = [
-            "# Repository Structure",
+            "## Repository Structure",
             "",
             f"(project type: {project_type})",
             "",

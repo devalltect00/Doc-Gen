@@ -1,0 +1,57 @@
+feat(structure): add project-aware documentation for mixed stacks
+
+Expand Doc Gen from a small fixed project-type catalog into a composable
+detection and metadata system while preserving the existing CLI contract.
+
+### Project detection
+
+- Keep one compatible primary type and add ecosystem, framework, and tool
+  signals for mixed-stack repositories.
+- Detect Python, Django, Flask, FastAPI, Node.js, React, Next.js, Google Apps
+  Script, PHP, Laravel, Go, and Gin from safe repository markers.
+- Recognize TypeScript and common JavaScript package managers as secondary
+  context.
+- Honor manual project-type overrides and fix the public auto, Flask, and
+  FastAPI resolution paths.
+
+### Metadata and safety
+
+- Merge common, ecosystem, and framework metadata in deterministic order.
+- Render descriptions only for recognized files and directories present in the
+  selected repository.
+- Apply detected ecosystem ignore rules before scanning.
+- Exclude local clasp configuration and environment files that may contain
+  identifiers or credentials.
+- Align uninitialized projects with the canonical lowercase
+  `docs/project_structure.md` output while retaining read compatibility for the
+  retired configuration filename.
+- Keep common metadata ecosystem-neutral and contribute Python tooling only to
+  repositories detected as Python projects.
+- Normalize generated Markdown to stable UTF-8/LF output with no trailing
+  whitespace, repeated blank lines, or missing final newline.
+- Replace formatter-sensitive file tables with recognized-file lists that
+  remain readable for both root and nested framework files.
+
+### Quality and documentation
+
+- Add synthetic regression coverage for supported frameworks, mixed signals,
+  override behavior, metadata composition, and sensitive-file boundaries.
+- Document supported project types, detection rules, metadata precedence, and
+  extension guidance.
+- Synchronize configuration comments, architecture guidance, active install
+  examples, and fallback versions with v1.1.0.
+- Exclude generated Python bytecode from source and wheel distributions.
+- Cover Markdown normalization, writer persistence, formatter-stable rendering,
+  and ecosystem-specific metadata boundaries with regression tests.
+
+### Compatibility
+
+- Preserve command names, profiles, configuration precedence, explicit output
+  selection, dry-run behavior, and Python 3.9+ package compatibility.
+
+Tag: v1.1.0
+Previous version: v1.0.2
+Release type: minor
+Changelog: generated separately
+
+Tags: #feature #project-detection #metadata #documentation #doc-gen

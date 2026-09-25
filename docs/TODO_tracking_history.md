@@ -4,16 +4,16 @@
 
 # docs/TODO.md
 
-> Cumulative snapshot for **v1.0.2**. Earlier tasks, unfinished work,
+> Cumulative snapshot for **v1.1.0**. Earlier tasks, unfinished work,
 > considerations, ideas, cancelled items, and notes are intentionally retained.
 
-# Doc Gen TODO Tracking History — v1.0.2
+# Doc Gen TODO Tracking History — v1.1.0
 
-> Current status: see the [v1.0.2 patch-release preparation](#v102-patch-release).
+> Current status: see the [v1.1.0 project-awareness release](#v110-project-awareness-release).
 > Older checkboxes, test counts, plans, and decisions are preserved as recorded;
 > they are historical context, not proof that every current release gate passed.
 
-> Cumulative snapshot for **v1.0.2**. Earlier tasks, unfinished work,
+> Cumulative snapshot for **v1.1.0**. Earlier tasks, unfinished work,
 > considerations, ideas, cancelled items, and notes are intentionally retained.
 
 ---
@@ -481,7 +481,8 @@ record until a new root TODO entry is added.
 ## 2026-09-02 status update — untagged checkpoint 3
 
 Version scope: **v1.0.0, carrying forward v1.0.0-rc.1 preparation**.
-The [checkpoint commit message](../.config/custy/templates/commit-message-v1.0.0-development-checkpoint-3.txt)
+The checkpoint commit message at
+`.config/custy/templates/commit-message-v1.0.0-development-checkpoint-3.txt`
 has **no associated tag or tag message**. Earlier checkpoint files remain unchanged.
 
 ### ✅ Current application and developer workflow
@@ -527,8 +528,8 @@ instructions. The empty root `TODO.md` adds no tasks to this update.
 
 ### Notes and evidence
 
-- [README](../README.md) and [metadata helper](../scripts/repository/src/sync_metadata.py) describe the current setup.
-- [GitLab package pipeline](../.gitlab/python-package.yml) defines the validation/publication boundary.
+- `README.md` and `scripts/repository/src/sync_metadata.py` describe the current setup.
+- `.gitlab/python-package.yml` defines the validation/publication boundary.
 - Earlier test/coverage figures and release-checklist statuses remain attached to their original milestones.
 - No existing history, ideas, alternatives, cancelled work, backup snapshots, or earlier checkpoint messages were removed.
 
@@ -539,7 +540,8 @@ instructions. The empty root `TODO.md` adds no tasks to this update.
 ## 2026-09-06 status update — untagged checkpoint 4
 
 Version scope: **v1.0.0, carrying forward v1.0.0-rc.1 preparation**.
-The [checkpoint commit message](../.config/custy/templates/commit-message-v1.0.0-development-checkpoint-4.txt)
+The checkpoint commit message at
+`.config/custy/templates/commit-message-v1.0.0-development-checkpoint-4.txt`
 has **no associated tag or tag message**. It becomes part of the cumulative
 RC.1 and stable release history.
 
@@ -561,8 +563,9 @@ RC.1 and stable release history.
 
 ### Notes and evidence
 
-- [GitHub release workflow](../.github/workflows/release.yml) contains the corrected release-note generation.
-- [Checkpoint 4 commit message](../.config/custy/templates/commit-message-v1.0.0-development-checkpoint-4.txt) records the internal implementation details.
+- `.github/workflows/release.yml` contains the corrected release-note generation.
+- `.config/custy/templates/commit-message-v1.0.0-development-checkpoint-4.txt`
+  records the internal implementation details.
 - The cumulative RC.1 and v1.0.0 commit and tag messages include checkpoint 4; this checkpoint itself remains untagged.
 - No existing history, plans, ideas, cancelled work, or earlier checkpoint evidence was removed.
 
@@ -571,7 +574,8 @@ RC.1 and stable release history.
 ## 2026-09-08 status update — post-RC stabilization checkpoint
 
 Version scope: **between published v1.0.0-rc.1 and planned stable v1.0.0**.
-The [stabilization commit message](../.config/custy/templates/commit-message-v1.0.0-stabilization-checkpoint.txt)
+The stabilization commit message at
+`.config/custy/templates/commit-message-v1.0.0-stabilization-checkpoint.txt`
 has **no associated tag or tag message**. It is separate from pre-RC
 development checkpoints 1–4.
 
@@ -645,8 +649,6 @@ Version scope: **v1.0.1 patch release**, following published v1.0.0.
 - Local Make builds use `app/doc_gen/__version__.py` as the reviewed version source; hosted release workflows continue deriving their package version from the validated release tag.
 - No Git commit, tag, push, package publication, image publication, or provider release was performed while preparing this entry.
 
----
-
 <a id="v102-patch-release"></a>
 
 ## Since v1.0.2
@@ -679,3 +681,77 @@ Version scope: **v1.0.2 patch release**, following published v1.0.1.
 - v1.0.2 preserves commands, configuration, generation behavior, and dry-run guarantees.
 - Historical release sections and versioned TODO snapshots remain unchanged.
 - No Git commit, tag, push, package publication, image publication, or provider release was performed while preparing this entry.
+
+---
+
+<a id="v110-project-awareness-release"></a>
+
+## Since v1.1.0
+
+Version scope: **v1.1.0 minor release**, following published v1.0.2.
+
+### ✅ Composable project detection
+
+- [x] Preserve the existing single primary-project type while adding ecosystem,
+  framework, and tool signals for mixed-stack repositories.
+- [x] Detect Python, Django, Flask, FastAPI, Node.js, React, Next.js, Google Apps
+  Script, PHP, Laravel, Go, and Gin from safe repository markers.
+- [x] Recognize TypeScript, npm, pnpm, Yarn, and clasp as secondary context.
+- [x] Honor explicit `--project-type` and configuration overrides while keeping
+  safe secondary metadata available.
+- [x] Fix the public `auto`, `flask`, and `fastapi` choices so they resolve
+  through the core project-type contract.
+
+### ✅ Project-aware metadata and safety
+
+- [x] Merge common, ecosystem, and framework metadata in deterministic order.
+- [x] Render only recognized directories and files present in the selected
+  target instead of presenting every common directory as if it existed.
+- [x] Add metadata for package manifests, JavaScript/TypeScript tooling, Google
+  Apps Script, Composer/Laravel, and Go/Gin structures.
+- [x] Apply automatically detected ecosystem ignores before scanning.
+- [x] Exclude local clasp configuration and environment files that can contain
+  identifiers or credentials; detection never reads those files.
+- [x] Align the no-config default with the canonical lowercase
+  `docs/project_structure.md` path and preserve read compatibility for the
+  retired configuration filename.
+- [x] Preserve dry-run and read-only command boundaries.
+- [x] Keep common repository metadata ecosystem-neutral and move Python-only
+  files into the Python metadata catalog.
+- [x] Replace formatter-sensitive file tables with stable recognized-file lists
+  that also support nested framework manifests.
+- [x] Normalize generated Markdown to UTF-8 and LF with no trailing whitespace,
+  no repeated blank lines, and exactly one final newline.
+- [x] Preserve user-selected output paths while minimizing failures from
+  Prettier and common pre-commit whitespace hooks.
+
+### ✅ Tests and documentation
+
+- [x] Add synthetic regression fixtures for Apps Script, Laravel, Gin, Flask,
+  FastAPI, manual overrides, false-positive protection, metadata composition,
+  nested manifests, and combined ignore behavior.
+- [x] Document supported types, merge precedence, detection safety, manual
+  overrides, and extension guidance.
+- [x] Synchronize CLI help, generated configuration comments, architecture,
+  installation examples, source fallback versions, and release messages.
+- [x] Exclude generated Python bytecode from built source and wheel artifacts.
+- [x] Add regression coverage for Markdown normalization, writer persistence,
+  formatter-stable rendering, and ecosystem-specific metadata isolation.
+
+### ⏳ Final release actions
+
+- [ ] Re-run the Python 3.9 and 3.14 test matrix, lint, formatting, pre-commit,
+  documentation, package, and container checks against the exact release commit.
+- [ ] Review the v1.1.0 commit message, annotated tag message, generated
+  changelog, and registry destinations.
+- [ ] Commit, create the `v1.1.0` tag, publish, and verify provider releases
+  only with explicit release approval.
+
+### Notes
+
+- v1.1.0 is additive: existing commands, profiles, configuration precedence,
+  output selection, and dry-run guarantees remain compatible.
+- The Foksiku repository informed Apps Script support, but tests use isolated
+  synthetic fixtures and do not depend on an external checkout.
+- No Git commit, tag, push, package publication, image publication, or provider
+  release was performed while preparing this entry.

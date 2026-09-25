@@ -38,7 +38,7 @@ is part of v1.0.0-rc.1, not a later stable-only change.
 | Property                     | Value                                         |
 | ---------------------------- | --------------------------------------------- |
 | Project                      | Doc Gen                                       |
-| Current version              | `v1.0.2`                                      |
+| Current version              | `v1.1.0`                                      |
 | Python package               | `doc-gen`                                     |
 | Package compatibility        | Python 3.9+                                   |
 | Standard development runtime | Python 3.14                                   |
@@ -57,6 +57,9 @@ is part of v1.0.0-rc.1, not a later stable-only change.
 - 📄 Generate Markdown at a configured or explicitly selected output path
 - 🔎 Separate read-only structure printing and analysis commands
 - 🧠 Smart mode (auto-detect project size & optimize output)
+- 🧩 Composable ecosystem, framework, and tool detection for mixed stacks
+- 🌐 Project-aware metadata for Python, JavaScript/TypeScript, Google Apps
+  Script, PHP/Laravel, and Go/Gin repositories
 - 🎯 Profiles (`minimal`, `default`, `detailed`)
 - ⚙️ Namespaced configuration in `.config/doc_gen/config.toml`
 - 🎨 Colored CLI output (rich UI)
@@ -191,12 +194,17 @@ max_depth = 5
 show_files = true
 smart_mode = false
 
+# Optional. Leave unset for automatic, composable detection.
+# project_type = "google-apps-script"
+
 [tool.doc-gen.cli.structure.generate]
 output_file = "docs/project_structure.md"
 ```
 
 CLI options override configured values. `--dry-run` allows read-only discovery
 but prevents persistent generated output; diagnostic logs may still be written.
+Use `--project-type` only when a repository needs an explicit primary type;
+safe secondary signals can still enrich its generated descriptions and ignores.
 
 ---
 

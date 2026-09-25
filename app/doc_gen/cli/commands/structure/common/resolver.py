@@ -81,8 +81,11 @@ def resolve_structure_common_args(
         None,
     )
 
+    normalized_project_type = getattr(project_type_value, "value", project_type_value)
     resolved_project_type = (
-        ProjectType(project_type_value) if project_type_value else None
+        ProjectType(normalized_project_type)
+        if normalized_project_type and normalized_project_type != "auto"
+        else None
     )
 
     return StructureCommonArgs(

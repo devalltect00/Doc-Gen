@@ -4,9 +4,7 @@
 Directory details renderer.
 """
 
-from doc_gen.core.structure.metadata.repository_docs import (
-    COMMON_DIRECTORIES,
-)
+from doc_gen.core.structure.metadata.models import MetadataCatalog
 
 
 class DirectoryDetailsRenderer:
@@ -18,6 +16,7 @@ class DirectoryDetailsRenderer:
         self,
         *,
         directories: list[str],
+        catalog: MetadataCatalog,
     ) -> str:
         """
         Render markdown section.
@@ -29,12 +28,14 @@ class DirectoryDetailsRenderer:
         ]
 
         for directory in directories:
-            if directory not in COMMON_DIRECTORIES:
+            if directory not in catalog.directories:
                 continue
 
-            info = COMMON_DIRECTORIES[directory]
+            info = catalog.directories[directory]
 
             lines.append(f"### `{directory}/`")
+
+            lines.append("")
 
             lines.append(info["description"])
 

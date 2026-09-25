@@ -1,10 +1,8 @@
 # app/doc_gen/config/file_loader.py
 
-"""
-Load project configuration from .projectstructure.toml
-"""
+"""Load namespaced project configuration with a legacy-file fallback."""
 
-import os
+from pathlib import Path
 from typing import Any, Dict
 
 try:
@@ -15,7 +13,10 @@ except ModuleNotFoundError:  # pragma: no cover - Python 3.9/3.10 only
 
 def load_project_config(root_path: str = ".") -> Dict[str, Any]:
     """
-    Load configuration from .projectstructure.toml if exists.
+    Load `.config/doc_gen/config.toml` when present.
+
+    The retired `.projectstructure.toml` location remains a read-only fallback
+    for callers that still import this compatibility helper.
 
     Args:
         root_path (str): Root directory of the project
@@ -23,16 +24,19 @@ def load_project_config(root_path: str = ".") -> Dict[str, Any]:
     Returns:
         dict: Configuration dictionary
     """
-    config_path = os.path.join(root_path, ".projectstructure.toml")
+    root = Path(root_path)
+    canonical_path = root / ".config" / "doc_gen" / "config.toml"
+    legacy_path = root / ".projectstructure.toml"
+    config_path = canonical_path if canonical_path.is_file() else legacy_path
 
-    if not os.path.exists(config_path):
+    if not config_path.is_file():
         return {}
 
     try:
-        with open(config_path, "rb") as f:
+        with config_path.open("rb") as f:
             data = tomllib.load(f)
 
         return data.get("tool", {}).get("doc-gen", {})
 
-    except Exception:
+    except (OSError, tomllib.TOMLDecodeError, TypeError):
         return {}

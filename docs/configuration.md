@@ -2,7 +2,7 @@
 
 # Configuration
 
-This document describes how DocGen can be configured.
+This document describes how Doc Gen can be configured.
 
 ## Overview
 
@@ -12,8 +12,6 @@ Configuration may be provided through:
 
 - Command-line options
 - Configuration files
-- Environment variables (if supported)
-- Future extensions
 
 ---
 
@@ -22,7 +20,7 @@ Configuration may be provided through:
 By default, DocGen:
 
 - Scans the current directory
-- Generates a PROJECT_STRUCTURE.md file
+- Generates `docs/project_structure.md`
 - Uses the "default" profile
 - Shows full directory tree
 - Does not include hidden files
@@ -126,21 +124,33 @@ show_files = true
 
 # Enable smart mode
 smart_mode = false
+
+# Optional primary-type override. Leave unset for automatic detection.
+# project_type = "laravel"
 ```
 
----
+### Project detection
 
-## Environment Variables
+Automatic detection combines safe repository markers from multiple ecosystems.
+For example, a Google Apps Script repository can contribute JavaScript,
+TypeScript, clasp, and Apps Script metadata at the same time. Supported primary
+overrides are:
 
-Future versions may support environment variables.
+```text
+generic, python, django, flask, fastapi,
+nodejs, reactjs, nextjs, google-apps-script,
+php, laravel, go, gin
+```
 
-Example:
+Use an override from the CLI when automatic detection needs help:
 
 ```bash
-DOC_GEN_PROFILE=minimal
-DOC_GEN_MAX_DEPTH=2
-DOC_GEN_SMART=true
+doc-gen structure generate --project-type google-apps-script
 ```
+
+The override selects the primary project label. Safe secondary signals may
+still extend the metadata and ignore rules. Doc Gen never reads local clasp
+credential configuration while detecting Google Apps Script projects.
 
 ---
 
@@ -151,9 +161,7 @@ When multiple configuration sources exist, the following priority should apply:
 ```text
 Command Line Arguments
     ↓
-Environment Variables
-    ↓
-Configuration File
+Project Configuration (`.config/doc_gen/config.toml`)
     ↓
 Built-in Defaults
 ```
@@ -166,15 +174,30 @@ Built-in Defaults
 
 Store project configuration files in version control.
 
-Example:
-
-```text
-.projectstructure.toml
-```
+The canonical project configuration is `.config/doc_gen/config.toml`.
 
 ### Keep Configuration Minimal
 
 Only override settings when necessary.
+
+### Generated Markdown quality
+
+The configured output remains fully project-controlled:
+
+```toml
+[tool.doc-gen.cli.structure.generate]
+output_file = "docs/project_structure.md"
+```
+
+Doc Gen writes the selected Markdown file with UTF-8 encoding, LF line endings,
+no trailing spaces or tabs, no repeated blank lines, and exactly one final
+newline. This keeps the generated artifact compatible with common
+`trailing-whitespace` and `end-of-file-fixer` pre-commit hooks and minimizes
+formatter-only changes.
+
+Doc Gen does not execute project-owned formatters or hooks automatically.
+Projects with additional Markdown policies should still validate the generated
+file with their normal quality workflow.
 
 ### Prefer Project-Level Configuration
 

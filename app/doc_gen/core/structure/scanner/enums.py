@@ -12,7 +12,16 @@ class ProjectType(str, Enum):
 
     PYTHON = "python"
     DJANGO = "django"
+    FLASK = "flask"
+    FASTAPI = "fastapi"
 
     NODEJS = "nodejs"
     REACTJS = "reactjs"
     NEXTJS = "nextjs"
+    GOOGLE_APPS_SCRIPT = "google-apps-script"
+
+    PHP = "php"
+    LARAVEL = "laravel"
+
+    GO = "go"
+    GIN = "gin"

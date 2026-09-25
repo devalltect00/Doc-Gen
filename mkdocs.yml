@@ -102,6 +102,7 @@ nav:
       - Quick Start: user-guide/quickstart.md
       - Smart Mode: user-guide/smart-mode.md
       - Commands: user-guide/commands.md
+      - Project Detection: project-detection.md
       - Dry-run Safety: dry-run.md
       - Installation: user-guide/installation-methods.md
       - Lifecycle: user-guide/lifecycle.md

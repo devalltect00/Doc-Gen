@@ -20,6 +20,7 @@ This documentation is organized for multiple audiences:
 - [User Guide Overview](user-guide/overview.md)
 - [Quick Start](user-guide/quickstart.md)
 - [Commands Reference](user-guide/commands.md)
+- [Project Detection](project-detection.md)
 - [Installation Methods](user-guide/installation-methods.md)
 - [Lifecycle (Start/Run/Stop/Remove)](user-guide/lifecycle.md)
 
@@ -71,7 +72,8 @@ DocGen is a CLI utility that:
 - analyzes repository layout and file organization
 - supports multiple output profiles (minimal, default, detailed)
 - provides smart mode for automatic optimization
-- allows customization through config files (`.projectstructure.toml`)
+- combines project-aware metadata for supported ecosystems and frameworks
+- allows customization through `.config/doc_gen/config.toml`
 
 Primary CLI entrypoint:
 

@@ -13,7 +13,7 @@ deploy token that has `read_package_registry` permission:
 ```bash
 python -m pip install \
   --index-url "https://<deploy-token-user>:<deploy-token>@gitlab.com/api/v4/projects/<project-id>/packages/pypi/simple" \
-  "doc-gen==1.0.2"
+  "doc-gen==1.1.0"
 ```
 
 A release-candidate tag such as `v1.0.0-rc.1` is stored as the canonical
@@ -46,7 +46,7 @@ pip install git+https://github.com/devalltect00/doc-gen.git
 Install a specific version:
 
 ```bash
-pip install git+https://github.com/devalltect00/doc-gen.git@v1.0.2
+pip install git+https://github.com/devalltect00/doc-gen.git@v1.1.0
 ```
 
 ## Method 3: Docker
@@ -98,7 +98,7 @@ After installation, verify by running:
 doc-gen structure generate
 ```
 
-This should create a PROJECT_STRUCTURE.md file.
+This should create `docs/project_structure.md` by default.
 
 ---
 

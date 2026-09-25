@@ -14,9 +14,13 @@ logic across:
     - StructureAnalyzeMain
 """
 
+from __future__ import annotations
+
 from doc_gen.core.structure.common.models import (
     StructureConfig,
 )
+from doc_gen.core.structure.scanner.models import ProjectFingerprint
+from doc_gen.core.structure.scanner.project_detector import ProjectDetector
 from doc_gen.core.structure.scanner.scanner_service import (
     ScannerService,
 )
@@ -45,6 +49,7 @@ class StructureFactory:
     @staticmethod
     def create_ignore_loader(
         config: StructureConfig,
+        fingerprint: ProjectFingerprint | None = None,
     ) -> IgnoreLoader:
         """
         Create IgnoreLoader.
@@ -59,11 +64,16 @@ class StructureFactory:
         IgnoreLoader
         """
 
+        resolved_fingerprint = fingerprint or ProjectDetector(
+            config.target_directory
+        ).detect_fingerprint(config.project_type)
+
         return IgnoreLoader(
             root_path=str(
                 config.target_directory,
             ),
-            project_type=config.project_type,
+            project_type=resolved_fingerprint.primary_type,
+            project_types=resolved_fingerprint.detected_technologies,
         )
 
     @classmethod
@@ -85,11 +95,13 @@ class StructureFactory:
         ScannerService
         """
 
-        ignore_loader = cls.create_ignore_loader(
-            config,
+        fingerprint = ProjectDetector(config.target_directory).detect_fingerprint(
+            config.project_type
         )
+        ignore_loader = cls.create_ignore_loader(config, fingerprint)
 
         return ScannerService(
             config=config,
             ignore_loader=ignore_loader,
+            fingerprint=fingerprint,
         )

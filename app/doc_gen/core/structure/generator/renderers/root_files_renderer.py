@@ -1,54 +1,42 @@
 # app/doc_gen/core/structure/generator/renderers/root_files_renderer.py
 
-"""
-Root files renderer.
-"""
+"""Recognized repository files renderer."""
 
 from pathlib import Path
 
-from doc_gen.core.structure.metadata.repository_docs import (
-    COMMON_ROOT_FILES,
-)
+from doc_gen.core.structure.metadata.models import MetadataCatalog
 
 
 class RootFilesRenderer:
-    """
-    Render root file documentation.
-    """
+    """Render documentation for recognized repository files."""
 
     def render(
         self,
         *,
         root_directory: Path,
+        catalog: MetadataCatalog,
     ) -> str:
         """
-        Render root file section.
+        Render recognized file descriptions as formatter-stable Markdown.
         """
 
         lines = [
-            "## Root Files",
+            "## Recognized Files",
             "",
         ]
 
         detected = []
 
-        for filename in COMMON_ROOT_FILES:
+        for filename in catalog.root_files:
             if (root_directory / filename).exists():
                 detected.append(filename)
 
         if not detected:
-            lines.append("No common root files detected.")
+            lines.append("No recognized repository files detected.")
 
             return "\n".join(lines)
 
-        lines.extend(
-            [
-                "| File | Description |",
-                "|------|-------------|",
-            ]
-        )
-
         for filename in detected:
-            lines.append(f"| `{filename}` | {COMMON_ROOT_FILES[filename]} |")
+            lines.append(f"- `{filename}` — {catalog.root_files[filename]}")
 
         return "\n".join(lines)

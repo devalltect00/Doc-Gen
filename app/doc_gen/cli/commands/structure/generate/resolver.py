@@ -59,7 +59,7 @@ def resolve_structure_generate_args(
             config.resolve(
                 output_file,
                 ["cli", "structure", "generate", "output_file"],
-                "docs/PROJECT_STRUCTURE.md",
+                "docs/project_structure.md",
             )
         ),
     )

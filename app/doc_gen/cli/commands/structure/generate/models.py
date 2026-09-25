@@ -38,7 +38,7 @@ class StructureGenerateArgs(StructureCommonArgs):
         show_files=True,
         collapse_dirs={"node_modules", ".venv"},
         project_type=None,
-        output_file=Path("docs/PROJECT_STRUCTURE.md"),
+        output_file=Path("docs/project_structure.md"),
         verbose=False,
     )
     """

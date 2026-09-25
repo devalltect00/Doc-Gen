@@ -28,9 +28,9 @@ pip install -e .
 ## 🚀 Running the CLI
 
 ```bash
-doc-gen generate
-doc-gen print
-doc-gen analyze
+doc-gen structure generate
+doc-gen structure print
+doc-gen structure analyze
 doc-gen init
 ```
 
@@ -61,7 +61,7 @@ Handles:
 
 - defaults
 - profiles
-- `.projectstructure.toml`
+- `.config/doc_gen/config.toml`
 
 ---
 
@@ -130,7 +130,7 @@ Based on:
 ## 📄 Config File
 
 ```
-.projectstructure.toml
+.config/doc_gen/config.toml
 ```
 
 Used to define project-specific behavior.

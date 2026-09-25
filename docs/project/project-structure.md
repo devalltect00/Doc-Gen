@@ -52,7 +52,7 @@ app/doc_gen/
 | `app/doc_gen/cli/commands/structure/command.py`              | Structure commands    |
 | `app/doc_gen/core/structure/scanner/scanner_service.py`      | File scanner          |
 | `app/doc_gen/core/structure/generator/markdown_generator.py` | Markdown generator    |
-| `.projectstructure.toml`                                     | Project configuration |
+| `.config/doc_gen/config.toml`                               | Project configuration |
 
 ---
 

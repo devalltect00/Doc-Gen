@@ -46,7 +46,7 @@ doc-gen structure [OPTIONS] COMMAND [ARGS]...
 
 #### structure generate
 
-Generate PROJECT_STRUCTURE.md.
+Generate Markdown project-structure documentation.
 
 ```bash
 doc-gen structure generate [OPTIONS]
@@ -57,8 +57,10 @@ Options:
 - `--profile [minimal|default|detailed]` - Output profile
 - `--max-depth INTEGER` - Maximum directory depth
 - `--smart / --no-smart` - Enable smart mode
-- `--show-files / --no-files` - Show individual files
+- `--show-files / --hide-files` - Show or hide individual files
+- `--project-type TYPE` - Override automatic primary-project detection
 - `--output FILE` - Output file path
+- `--dry-run / --no-dry-run` - Preview without writing generated output
 
 Examples:
 
@@ -67,8 +69,14 @@ doc-gen structure generate
 doc-gen structure generate --profile minimal
 doc-gen structure generate --smart
 doc-gen structure generate --max-depth 2
+doc-gen structure generate --project-type google-apps-script
 doc-gen structure generate --output my-structure.md
 ```
+
+The destination may be any path selected through `--output` or
+`[tool.doc-gen.cli.structure.generate].output_file`. Generated Markdown uses
+stable whitespace, LF line endings, and one final newline so common pre-commit
+whitespace hooks do not need to rewrite it.
 
 #### structure print
 

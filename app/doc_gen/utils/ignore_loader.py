@@ -7,9 +7,18 @@ from fnmatch import fnmatch
 class IgnoreLoader:
     """Handles ignore rules for project structure scanning."""
 
-    def __init__(self, root_path=".", project_type="generic"):
+    def __init__(
+        self,
+        root_path=".",
+        project_type="generic",
+        project_types=None,
+    ):
         self.root_path = root_path
-        self.project_type = project_type
+        self.project_type = self._normalize_name(project_type)
+        self.project_types = {
+            self._normalize_name(item) for item in (project_types or ())
+        }
+        self.project_types.add(self.project_type)
 
         self.patterns = set()
         self._load_default_patterns()
@@ -82,21 +91,49 @@ class IgnoreLoader:
             "pnpm-lock.yaml",
         }
 
-        common |= additional
+        php = {
+            "vendor",
+            "storage",
+        }
 
-        ### Normalize project type for pattern loading
-        if self.project_type in {"python", "django", "flask_or_fastapi"}:
-            self.project_type = "python"
-        if self.project_type in {"reactjs", "nextjs", "nodejs"}:
-            self.project_type = "javascript"
+        go = {
+            "bin",
+            "vendor",
+            "coverage.out",
+        }
 
-        ### Load patterns based on project type
-        if self.project_type == "python":
-            self.patterns |= common | python
-        elif self.project_type == "javascript":
-            self.patterns |= common | javascript
-        else:
-            self.patterns |= common
+        sensitive = {
+            ".env",
+            ".env*",
+            ".clasp.json",
+            ".clasp.local.json",
+            ".clasprc.json",
+        }
+
+        common |= additional | sensitive
+
+        self.patterns |= common
+        if self.project_types & {"python", "django", "flask", "fastapi"}:
+            self.patterns |= python
+        if self.project_types & {
+            "javascript",
+            "typescript",
+            "reactjs",
+            "nextjs",
+            "nodejs",
+            "google-apps-script",
+        }:
+            self.patterns |= javascript
+        if self.project_types & {"php", "laravel"}:
+            self.patterns |= php
+        if self.project_types & {"go", "gin"}:
+            self.patterns |= go
+
+    @staticmethod
+    def _normalize_name(value):
+        """Normalize enum and string project-type inputs."""
+
+        return str(getattr(value, "value", value or "generic")).lower()
 
     # ------------------------
     # .projectignore Support

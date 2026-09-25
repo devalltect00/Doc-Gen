@@ -4,9 +4,8 @@
 Repository overview renderer.
 """
 
-from doc_gen.core.structure.metadata.repository_docs import (
-    COMMON_DIRECTORIES,
-)
+from doc_gen.core.structure.metadata.models import MetadataCatalog
+from doc_gen.core.structure.scanner.models import ProjectFingerprint
 
 
 class RepositoryOverviewRenderer:
@@ -14,7 +13,13 @@ class RepositoryOverviewRenderer:
     Render repository overview section.
     """
 
-    def render(self) -> str:
+    def render(
+        self,
+        *,
+        directories: list[str],
+        fingerprint: ProjectFingerprint,
+        catalog: MetadataCatalog,
+    ) -> str:
         """
         Render markdown section.
         """
@@ -23,15 +28,26 @@ class RepositoryOverviewRenderer:
             "# Repository Overview",
             "",
             (
-                "This repository follows a modular "
-                "structure commonly used in modern projects."
+                "This repository was analyzed using composable project "
+                "and framework metadata."
             ),
             "",
-            "Common directories include:",
+            "Detected technologies: "
+            + ", ".join(
+                f"`{technology}`" for technology in fingerprint.detected_technologies
+            ),
+            "",
+            "Recognized top-level directories:",
             "",
         ]
 
-        for name, info in COMMON_DIRECTORIES.items():
+        recognized = [name for name in directories if name in catalog.directories]
+        if not recognized:
+            lines.append("No project-aware top-level directories were detected.")
+            return "\n".join(lines)
+
+        for name in recognized:
+            info = catalog.directories[name]
             lines.append(f"- `{name}/` — {info['description']}")
 
         return "\n".join(lines)

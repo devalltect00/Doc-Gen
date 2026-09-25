@@ -12,7 +12,7 @@ has `read_package_registry` access:
 ```bash
 python -m pip install \
   --index-url "https://<deploy-token-user>:<deploy-token>@gitlab.com/api/v4/projects/<project-id>/packages/pypi/simple" \
-  "doc-gen==1.0.2"
+  "doc-gen==1.1.0"
 ```
 
 ## Step 2: Verify Installation
@@ -33,14 +33,14 @@ Run the generate command:
 doc-gen structure generate
 ```
 
-This creates a PROJECT_STRUCTURE.md file in your current directory.
+This creates `docs/project_structure.md` by default.
 
 ## Step 4: View Output
 
 Open the generated file:
 
 ```markdown
-# PROJECT_STRUCTURE.md
+# docs/project_structure.md
 ```
 
 You should see your project structure.
@@ -77,10 +77,10 @@ doc-gen structure generate --profile detailed
 
 ## Configuration (Optional)
 
-Create a .projectstructure.toml file:
+Run `doc-gen init`, then edit `.config/doc_gen/config.toml`:
 
 ```toml
-[tool.doc-gen]
+[tool.doc-gen.cli.structure]
 profile = "default"
 max_depth = 3
 show_files = true

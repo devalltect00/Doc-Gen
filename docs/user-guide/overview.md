@@ -6,14 +6,17 @@ Welcome to the DocGen User Guide. This guide helps you use DocGen effectively.
 
 ## What is DocGen?
 
-DocGen is a CLI tool that automatically generates a `PROJECT_STRUCTURE.md` file showing your project layout. It helps developers quickly understand any project.
+Doc Gen is a CLI tool that generates Markdown documentation showing a selected
+project's layout. It helps developers quickly understand unfamiliar repositories.
 
 ## Key Features
 
-- **Auto-generate documentation** - Creates PROJECT_STRUCTURE.md automatically
+- **Auto-generate documentation** - Creates `docs/project_structure.md` by default
 - **Multiple profiles** - Choose detail level (minimal, default, detailed)
 - **Smart mode** - Auto-optimizes output based on project size
-- **Configurable** - Uses .projectstructure.toml for settings
+- **Configurable** - Uses `.config/doc_gen/config.toml` for project settings
+- **Project-aware** - Combines ecosystem, framework, and tool metadata for
+  mixed Python, JavaScript/TypeScript, Apps Script, PHP, and Go repositories
 - **Rich CLI output** - Beautiful colored terminal output
 
 ## Quick Example
@@ -22,7 +25,7 @@ DocGen is a CLI tool that automatically generates a `PROJECT_STRUCTURE.md` file 
 # Install
 python -m pip install \
   --index-url "https://<deploy-token-user>:<deploy-token>@gitlab.com/api/v4/projects/<project-id>/packages/pypi/simple" \
-  "doc-gen==1.0.2"
+  "doc-gen==1.1.0"
 
 # Generate documentation
 doc-gen structure generate
@@ -32,7 +35,7 @@ The registry is private and requires a deploy token with
 `read_package_registry` access. See the installation methods guide for source,
 artifact, and Docker alternatives.
 
-This creates a PROJECT_STRUCTURE.md file.
+This creates `docs/project_structure.md` by default.
 
 ## Who Should Use DocGen?
 

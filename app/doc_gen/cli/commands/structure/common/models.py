@@ -29,8 +29,8 @@ from pathlib import Path
 
 from doc_gen.cli.constants.enums import (
     ProfileChoices,
-    ProjectTypeChoices,
 )
+from doc_gen.core.structure.scanner.enums import ProjectType
 
 
 @dataclass
@@ -65,7 +65,7 @@ class StructureCommonArgs:
     max_depth: int
     show_files: bool
     collapse_dirs: set[str]
-    project_type: ProjectTypeChoices | None
+    project_type: ProjectType | None
     verbose: bool
     dry_run: bool
 

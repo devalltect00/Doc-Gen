@@ -4,11 +4,14 @@
 Structure scanner orchestration service.
 """
 
+from __future__ import annotations
+
 from doc_gen.core.structure.common.models import (
     StructureConfig,
 )
 from doc_gen.core.structure.scanner.models import (
     AnalysisResult,
+    ProjectFingerprint,
 )
 from doc_gen.core.structure.scanner.project_analyzer import (
     ProjectAnalyzer,
@@ -46,6 +49,7 @@ class ScannerService:
         *,
         config: StructureConfig,
         ignore_loader,
+        fingerprint: ProjectFingerprint | None = None,
     ) -> None:
         """
         Initialize scanner service.
@@ -66,12 +70,12 @@ class ScannerService:
         #
         # Detect project type
         #
-        self.project_type = (
-            config.project_type
-            or ProjectDetector(
-                config.target_directory,
-            ).detect()
+        self.fingerprint = fingerprint or ProjectDetector(
+            config.target_directory,
+        ).detect_fingerprint(
+            config.project_type,
         )
+        self.project_type = self.fingerprint.primary_type
 
         #
         # Repository analyzer

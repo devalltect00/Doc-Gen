@@ -6,25 +6,18 @@ This document explains design patterns used in the DocGen project.
 
 ---
 
-## Strategy Pattern
+## Registry and Composition Pattern
 
-The most important pattern used in this project.
-
-Language-specific behavior is isolated into strategies.
-
-Example:
-
-```python
-DirectoryScannerStrategy
-FileScannerStrategy
-```
+Project detection produces a fingerprint with one compatible primary type and
+multiple ecosystem, framework, and tool signals. The metadata registry merges
+common documentation with increasingly specific catalogs.
 
 Benefits:
 
-- Scalability
-- Cleaner code
-- Easier testing
-- Extension support
+- Mixed-stack repositories are represented without a combinatorial enum
+- New ecosystems and frameworks can extend metadata independently
+- Existing CLI and configuration values remain compatible
+- Detection, metadata, rendering, and ignore behavior remain testable
 
 ---
 
@@ -50,11 +43,7 @@ Benefits:
 
 The builder pattern is used for constructing complex output.
 
-Example:
-
-```python
-StructureBuilder
-```
+`StructureConfigBuilder` resolves the backend configuration used by scanners.
 
 Benefits:
 
@@ -71,9 +60,9 @@ Structured result objects are implemented using dataclasses.
 Example:
 
 ```python
-ProjectStructure
-DirectoryDetails
-FileDetails
+ProjectFingerprint
+AnalysisResult
+GenerationResult
 ```
 
 Benefits:
@@ -91,10 +80,10 @@ The project prefers composition where possible.
 Example:
 
 ```python
-StructureGenerator
-    -> DirectoryScanner
-    -> FileAnalyzer
-    -> MarkdownRenderer
+MarkdownGenerator
+    -> ScannerService
+    -> MetadataRegistry
+    -> Section renderers
 ```
 
 Instead of deep inheritance trees.

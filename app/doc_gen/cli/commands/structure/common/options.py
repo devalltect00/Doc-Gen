@@ -150,9 +150,16 @@ ProjectTypeOption = Annotated[
         Examples:
             python
             django
+            flask
+            fastapi
             nodejs
             reactjs
             nextjs
+            google-apps-script
+            php
+            laravel
+            go
+            gin
         """,
     ),
 ]

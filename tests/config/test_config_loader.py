@@ -7,6 +7,7 @@ from pathlib import Path
 import pytest
 
 from doc_gen.config.config_loader import ConfigError, ConfigLoader
+from doc_gen.config.file_loader import load_project_config
 
 
 def test_config_loader_reads_nested_tool_section(tmp_path: Path) -> None:
@@ -141,3 +142,37 @@ def test_config_loader_invalid_toml_raises_config_error(tmp_path: Path) -> None:
 
     with pytest.raises(ConfigError):
         ConfigLoader(filename=str(config_file))
+
+
+def test_compatibility_loader_prefers_canonical_namespaced_config(
+    tmp_path: Path,
+) -> None:
+    """The compatibility helper should prefer the maintained config location."""
+
+    canonical = tmp_path / ".config" / "doc_gen" / "config.toml"
+    canonical.parent.mkdir(parents=True)
+    canonical.write_text(
+        "[tool.doc-gen.cli.structure]\nproject_type = 'gin'\n",
+        encoding="utf-8",
+    )
+    (tmp_path / ".projectstructure.toml").write_text(
+        "[tool.doc-gen.cli.structure]\nproject_type = 'python'\n",
+        encoding="utf-8",
+    )
+
+    loaded = load_project_config(str(tmp_path))
+
+    assert loaded["cli"]["structure"]["project_type"] == "gin"
+
+
+def test_compatibility_loader_keeps_legacy_read_fallback(tmp_path: Path) -> None:
+    """Existing callers can still read the retired configuration filename."""
+
+    (tmp_path / ".projectstructure.toml").write_text(
+        "[tool.doc-gen.cli.structure]\nmax_depth = 2\n",
+        encoding="utf-8",
+    )
+
+    loaded = load_project_config(str(tmp_path))
+
+    assert loaded["cli"]["structure"]["max_depth"] == 2

@@ -55,7 +55,7 @@ Input (Target Directory)
     ├── Builder (constructs structure model)
     └── Renderer (outputs markdown)
         │
-        └── Output (PROJECT_STRUCTURE.md)
+        └── Output (docs/project_structure.md by default)
 ```
 
 ## Key Files
@@ -75,4 +75,4 @@ Input (Target Directory)
 
 - [Design Patterns](design-patterns.md)
 - [Workflow](workflow.md)
-- [Mermaid Diagrams](../diagrams/)
+- Mermaid sources are maintained in `docs/diagrams/`.
